@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="Vishal V Patil - Senior Web Developer with 7.6+ years in PHP, React JS, Laravel. Building scalable, secure web applications.">
-    <meta name="keywords" content="Web Developer, PHP, React JS, Laravel, CodeIgniter, Senior Developer, Vishal Patil.">
+    <meta name="keywords" content="Web Developer, PHP, React JS, Laravel, CodeIgniter, Senior Developer, Vishal Patil, Pune">
     <meta property="og:title" content="Vishal V Patil | Senior Web Developer">
     <meta property="og:description" content="7.6+ years crafting dynamic web applications with PHP, React JS & Laravel.">
     <meta property="og:type" content="website">
@@ -14,8 +14,6 @@
     <link rel="canonical" href="https://vishalpatil.dev">
     <title>Vishal V Patil | Senior Web Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
-    </script>
     <style>
         :root {
             --bg-deep: #0a0a0f;
@@ -1025,26 +1023,6 @@
             border: 0;
         }
 
-        /* Toast notification */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--accent-green);
-            color: #000;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            z-index: 999;
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 8px 32px rgba(74, 222, 128, 0.4);
-        }
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-        }
-
         /* RESPONSIVE */
         @media (max-width: 1024px) {
             .hero-grid {
@@ -1157,9 +1135,6 @@
 <body>
     <canvas id="particle-canvas" aria-hidden="true"></canvas>
 
-    <!-- Toast -->
-    <div class="toast" id="toast">✅ Resume downloaded successfully!</div>
-
     <!-- Header -->
     <header id="header" role="banner">
         <div class="header-inner">
@@ -1205,9 +1180,13 @@
                                 Let's Connect
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
-                            <button class="btn btn-secondary btn-magnetic" id="downloadResumeBtn" aria-label="Download resume as PDF">
+                            <!-- Resume download button now links directly to your PDF on GitHub -->
+                            <a href="https://raw.githubusercontent.com/vishal-pv/portfollio/main/Vishal-Patil-Updated-Calsoft.pdf" 
+                               class="btn btn-secondary btn-magnetic" 
+                               download="Vishal-Patil-Resume.pdf" 
+                               aria-label="Download resume PDF">
                                 <i class="fa-solid fa-download"></i> Resume
-                            </button>
+                            </a>
                             <a href="https://linkedin.com/in/vishalpatil961994" target="_blank" rel="noopener" class="btn btn-secondary btn-magnetic">
                                 <i class="fa-brands fa-linkedin"></i> LinkedIn
                             </a>
@@ -1234,7 +1213,7 @@
                                 <div class="code-line"><span class="line-number">4</span><span class="code-content">      <span class="var">role</span>=<span class="str">"Senior"</span></span></div>
                                 <div class="code-line"><span class="line-number">5</span><span class="code-content">      <span class="var">stack</span>={[<span class="str">"PHP"</span>, <span class="str">"React"</span>, <span class="str">"Laravel"</span>]}</span></div>
                                 <div class="code-line"><span class="line-number">6</span><span class="code-content">      <span class="var">experience</span>=<span class="str">"7.6+ years"</span></span></div>
-                                <div class="code-line"><span class="line-number">7</span><span class="code-content">      <span class="var">location</span>=<span class="str">"India"</span></span></div>
+                                <div class="code-line"><span class="line-number">7</span><span class="code-content">      <span class="var">location</span>=<span class="str">"Pune, India"</span></span></div>
                                 <div class="code-line"><span class="line-number">8</span><span class="code-content">    /&gt;</span></div>
                                 <div class="code-line"><span class="line-number">9</span><span class="code-content">  );</span></div>
                                 <div class="code-line"><span class="line-number">10</span><span class="code-content">};</span></div>
@@ -1261,7 +1240,7 @@
                     <div class="bento-card">
                         <div class="card-icon-wrap cyan"><i class="fa-solid fa-location-dot"></i></div>
                         <h3>Location</h3>
-                        <p>India<br>Available for remote & hybrid roles worldwide.</p>
+                        <p>Pune, India<br>Available for remote & hybrid roles worldwide.</p>
                         <p style="margin-top:8px;font-family:var(--font-mono);font-size:0.75rem;color:var(--accent-cyan);">vishalpatil961994@gmail.com</p>
                     </div>
                     <div class="bento-card">
@@ -1284,8 +1263,6 @@
                 <span class="section-label">Skills</span>
                 <h2 class="section-title" id="skills-heading">Technology <span class="gradient-text">Arsenal</span></h2>
                 <p class="section-subtitle">Technologies I work with daily — from frontend to backend, databases to DevOps. Hover over icons to see technology names.</p>
-
-                <!-- Floating Tech Icons with Tooltips -->
                 <div class="floating-tech-icons" style="margin:36px 0;">
                     <span class="floating-icon" title="PHP"><i class="fa-brands fa-php" style="color:#8892be;"></i><span class="tooltip">PHP</span></span>
                     <span class="floating-icon" title="React JS"><i class="fa-brands fa-react" style="color:#61dafb;"></i><span class="tooltip">React JS</span></span>
@@ -1303,69 +1280,36 @@
                     <span class="floating-icon" title="Google Analytics"><i class="fa-brands fa-google" style="color:#4285f4;"></i><span class="tooltip">Google Analytics</span></span>
                     <span class="floating-icon" title="AI Tools"><i class="fa-solid fa-wand-magic-sparkles" style="color:#a78bfa;"></i><span class="tooltip">AI Tools</span></span>
                 </div>
-
                 <div class="bento-grid" style="margin-top:20px;">
                     <div class="bento-card">
                         <div class="card-icon-wrap blue"><i class="fa-solid fa-language"></i></div>
                         <h3>Languages</h3>
-                        <div class="tech-orbit-container">
-                            <span class="tech-tag"><span class="tech-dot"></span>PHP</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>JavaScript</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>SQL</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>C</span>
-                        </div>
+                        <div class="tech-orbit-container"><span class="tech-tag"><span class="tech-dot"></span>PHP</span><span class="tech-tag"><span class="tech-dot"></span>JavaScript</span><span class="tech-tag"><span class="tech-dot"></span>SQL</span><span class="tech-tag"><span class="tech-dot"></span>C</span></div>
                     </div>
                     <div class="bento-card">
                         <div class="card-icon-wrap cyan"><i class="fa-solid fa-layer-group"></i></div>
                         <h3>Frameworks & Libraries</h3>
-                        <div class="tech-orbit-container">
-                            <span class="tech-tag"><span class="tech-dot"></span>CodeIgniter</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>Laravel</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>React JS</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>jQuery</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>Bootstrap</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>HTML</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>CSS</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>AJAX</span>
-                        </div>
+                        <div class="tech-orbit-container"><span class="tech-tag"><span class="tech-dot"></span>CodeIgniter</span><span class="tech-tag"><span class="tech-dot"></span>Laravel</span><span class="tech-tag"><span class="tech-dot"></span>React JS</span><span class="tech-tag"><span class="tech-dot"></span>jQuery</span><span class="tech-tag"><span class="tech-dot"></span>Bootstrap</span><span class="tech-tag"><span class="tech-dot"></span>HTML</span><span class="tech-tag"><span class="tech-dot"></span>CSS</span><span class="tech-tag"><span class="tech-dot"></span>AJAX</span></div>
                     </div>
                     <div class="bento-card">
                         <div class="card-icon-wrap purple"><i class="fa-solid fa-plug"></i></div>
                         <h3>APIs</h3>
-                        <div class="tech-orbit-container">
-                            <span class="tech-tag"><span class="tech-dot"></span>GraphQL</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>REST</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>SOAP</span>
-                        </div>
+                        <div class="tech-orbit-container"><span class="tech-tag"><span class="tech-dot"></span>GraphQL</span><span class="tech-tag"><span class="tech-dot"></span>REST</span><span class="tech-tag"><span class="tech-dot"></span>SOAP</span></div>
                     </div>
                     <div class="bento-card">
                         <div class="card-icon-wrap orange"><i class="fa-solid fa-toolbox"></i></div>
                         <h3>Tools & CRM</h3>
-                        <div class="tech-orbit-container">
-                            <span class="tech-tag"><span class="tech-dot"></span>Git</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>Docker</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>Google Analytics</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>WordPress</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>Checkmarx</span>
-                        </div>
+                        <div class="tech-orbit-container"><span class="tech-tag"><span class="tech-dot"></span>Git</span><span class="tech-tag"><span class="tech-dot"></span>Docker</span><span class="tech-tag"><span class="tech-dot"></span>Google Analytics</span><span class="tech-tag"><span class="tech-dot"></span>WordPress</span><span class="tech-tag"><span class="tech-dot"></span>Checkmarx</span></div>
                     </div>
                     <div class="bento-card">
                         <div class="card-icon-wrap pink"><i class="fa-solid fa-robot"></i></div>
                         <h3>AI Tools</h3>
-                        <div class="tech-orbit-container">
-                            <span class="tech-tag"><span class="tech-dot"></span>Claude</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>Gemini</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>Antigravity</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>Kimi K2</span>
-                        </div>
+                        <div class="tech-orbit-container"><span class="tech-tag"><span class="tech-dot"></span>Claude</span><span class="tech-tag"><span class="tech-dot"></span>Gemini</span><span class="tech-tag"><span class="tech-dot"></span>Antigravity</span><span class="tech-tag"><span class="tech-dot"></span>Kimi K2</span></div>
                     </div>
                     <div class="bento-card">
                         <div class="card-icon-wrap green"><i class="fa-solid fa-database"></i></div>
                         <h3>Databases</h3>
-                        <div class="tech-orbit-container">
-                            <span class="tech-tag"><span class="tech-dot"></span>MySQL</span>
-                            <span class="tech-tag"><span class="tech-dot"></span>MongoDB</span>
-                        </div>
+                        <div class="tech-orbit-container"><span class="tech-tag"><span class="tech-dot"></span>MySQL</span><span class="tech-tag"><span class="tech-dot"></span>MongoDB</span></div>
                     </div>
                 </div>
             </div>
@@ -1378,87 +1322,68 @@
                 <h2 class="section-title" id="projects-heading">Featured <span class="gradient-text">Work</span></h2>
                 <p class="section-subtitle">Enterprise-scale projects delivered for global clients across diverse domains.</p>
                 <div class="bento-grid" style="margin-top:40px;">
-                    <!-- Project 1: Panasonic Fleet Management -->
+                    <!-- Project 1 -->
                     <div class="project-card span-2">
                         <div class="project-card-header">
-                            <span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span>
-                            <span class="window-title" style="flex:1;text-align:center;">panasonic-fleet.tsx</span>
+                            <span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span><span class="window-title">panasonic-fleet.tsx</span>
                         </div>
                         <div class="project-card-body">
                             <div class="project-company">Panasonic • CalSoft Inc. | July 2025 – Present</div>
                             <h3>Fleet Management System</h3>
                             <p>Enhanced application security by implementing robust authentication, authorization, and audit logging mechanisms. Refactored Docker-based infrastructure for increased deployment reliability and environment consistency. Designed and implemented new Laravel APIs while actively participating in business requirement analysis and backend architecture decisions.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">Laravel</span><span class="project-tag">Symfony</span><span class="project-tag">React JS</span><span class="project-tag">MySQL</span><span class="project-tag">REST</span><span class="project-tag">Docker</span><span class="project-tag">AWS</span>
-                            </div>
+                            <div class="project-tags"><span class="project-tag">Laravel</span><span class="project-tag">Symfony</span><span class="project-tag">React JS</span><span class="project-tag">MySQL</span><span class="project-tag">REST</span><span class="project-tag">Docker</span><span class="project-tag">AWS</span></div>
                             <div class="project-highlight">Security & Compliance Enhanced • Infrastructure Modernized</div>
                         </div>
                     </div>
-
-                    <!-- Project 2: JPMorgan FROSCH -->
+                    <!-- Project 2 -->
                     <div class="project-card">
                         <div class="project-card-header">
-                            <span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span>
-                            <span class="window-title">jpmorgan-frosch.tsx</span>
+                            <span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span><span class="window-title">jpmorgan-frosch.tsx</span>
                         </div>
                         <div class="project-card-body">
                             <div class="project-company">JPMorgan FROSCH • Cybage | Dec 2021 – July 2025</div>
                             <h3>Travel Platform Security Enhancement</h3>
                             <p>Implemented critical security improvements and performance optimizations. Conducted comprehensive security assessments using Checkmarx, identifying and remediating vulnerabilities to improve the overall security posture.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">React JS</span><span class="project-tag">Laravel</span><span class="project-tag">MySQL</span><span class="project-tag">REST</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">Checkmarx</span>
-                            </div>
+                            <div class="project-tags"><span class="project-tag">React JS</span><span class="project-tag">Laravel</span><span class="project-tag">MySQL</span><span class="project-tag">REST</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">Checkmarx</span></div>
                             <div class="project-highlight">Security Posture Improved • Compliance Achieved</div>
                         </div>
                     </div>
-
-                    <!-- Project 3: ShulCloud -->
+                    <!-- Project 3 -->
                     <div class="project-card span-2">
                         <div class="project-card-header">
-                            <span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span>
-                            <span class="window-title">shulcloud.tsx</span>
+                            <span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span><span class="window-title">shulcloud.tsx</span>
                         </div>
                         <div class="project-card-body">
                             <div class="project-company">ShulCloud • Cybage | Dec 2021 – July 2025</div>
                             <h3>Legacy Modernization & Payment Integration</h3>
                             <p>Transformed a legacy PHP application into modern React class-based components, enhancing maintainability and performance. Integrated payment gateways, email platforms, and SMS services (Twilio). Implemented Google Analytics 4 (GA4) tracking and event monitoring for data-driven product and business decisions.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">React JS</span><span class="project-tag">Laravel</span><span class="project-tag">Core PHP</span><span class="project-tag">Docker</span><span class="project-tag">MySQL</span><span class="project-tag">GraphQL</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">Twilio</span><span class="project-tag">GA4</span>
-                            </div>
+                            <div class="project-tags"><span class="project-tag">React JS</span><span class="project-tag">Laravel</span><span class="project-tag">Core PHP</span><span class="project-tag">Docker</span><span class="project-tag">MySQL</span><span class="project-tag">GraphQL</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">Twilio</span><span class="project-tag">GA4</span></div>
                             <div class="project-highlight">Legacy → Modern Architecture • Payment Gateway Integrated</div>
                         </div>
                     </div>
-
-                    <!-- Project 4: SRV Media -->
+                    <!-- Project 4 -->
                     <div class="project-card">
                         <div class="project-card-header">
-                            <span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span>
-                            <span class="window-title">srv-media.tsx</span>
+                            <span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span><span class="window-title">srv-media.tsx</span>
                         </div>
                         <div class="project-card-body">
                             <div class="project-company">SRV Media Pvt. Ltd. | Nov 2019 – Sep 2021</div>
                             <h3>Client Website & Web Application Development</h3>
                             <p>Developed and maintained multiple client websites and web applications. Built custom WordPress themes and plugins, integrated third-party APIs, and optimized site performance achieving 40% faster load times.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">PHP</span><span class="project-tag">WordPress</span><span class="project-tag">JavaScript</span><span class="project-tag">jQuery</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">MySQL</span>
-                            </div>
+                            <div class="project-tags"><span class="project-tag">PHP</span><span class="project-tag">WordPress</span><span class="project-tag">JavaScript</span><span class="project-tag">jQuery</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">MySQL</span></div>
                             <div class="project-highlight">40% Performance Improvement • 10+ Clients Served</div>
                         </div>
                     </div>
-
-                    <!-- Project 5: Ubitech Systems -->
+                    <!-- Project 5 -->
                     <div class="project-card span-2">
                         <div class="project-card-header">
-                            <span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span>
-                            <span class="window-title">ubitech.tsx</span>
+                            <span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span><span class="window-title">ubitech.tsx</span>
                         </div>
                         <div class="project-card-body">
                             <div class="project-company">Ubitech Systems | Aug 2018 – Sep 2019</div>
                             <h3>Full-Stack Web Applications & API Development</h3>
                             <p>Built and deployed full-stack web applications using CodeIgniter and Laravel frameworks. Designed RESTful APIs and integrated payment systems. Worked directly with clients to gather requirements and deliver end-to-end solutions on schedule with high quality standards.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">PHP</span><span class="project-tag">CodeIgniter</span><span class="project-tag">Laravel</span><span class="project-tag">JavaScript</span><span class="project-tag">jQuery</span><span class="project-tag">MySQL</span><span class="project-tag">REST</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span>
-                            </div>
+                            <div class="project-tags"><span class="project-tag">PHP</span><span class="project-tag">CodeIgniter</span><span class="project-tag">Laravel</span><span class="project-tag">JavaScript</span><span class="project-tag">jQuery</span><span class="project-tag">MySQL</span><span class="project-tag">REST</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span></div>
                             <div class="project-highlight">End-to-End Delivery • Client Satisfaction</div>
                         </div>
                     </div>
@@ -1472,13 +1397,11 @@
                 <span class="section-label">Career</span>
                 <h2 class="section-title" id="experience-heading">Professional <span class="gradient-text">Journey</span></h2>
                 <p class="section-subtitle">7.6+ years across 5 organizations — each role a chapter of impact and innovation.</p>
-
                 <div class="timeline" id="timelineContainer">
                     <div class="timeline-progress">
                         <div class="timeline-progress-fill" id="progressFill"></div>
                         <div class="timeline-progress-dot" id="progressDot"></div>
                     </div>
-
                     <div class="timeline-item visible" data-index="0">
                         <div class="timeline-dot-static"></div>
                         <div class="timeline-period">July 2025 – Present</div>
@@ -1520,7 +1443,6 @@
                         <div class="timeline-techs"><span class="timeline-tech">PHP</span><span class="timeline-tech">JavaScript</span><span class="timeline-tech">HTML/CSS</span><span class="timeline-tech">SQL</span><span class="timeline-tech">C</span></div>
                     </div>
                 </div>
-
                 <div class="experience-code-float" id="codeFloat">
                     <pre>🚀 <span style="color:#ce9178;">"Building the future,
 one commit at a time."</span>
@@ -1538,17 +1460,11 @@ $journey->continue();</span></pre>
                 <span class="section-label">Contact</span>
                 <h2 class="section-title" id="contact-heading">Let's <span class="gradient-text">Work Together</span></h2>
                 <p style="color:var(--text-secondary);margin-bottom:8px;">I'm open to Senior Web Developer, Lead Engineer, and Principal Engineer roles.</p>
-                <p style="color:var(--text-muted);font-size:0.9rem;">India • Remote-friendly</p>
+                <p style="color:var(--text-muted);font-size:0.9rem;">Pune, India • Remote-friendly</p>
                 <div class="contact-cards">
-                    <a href="mailto:vishalpatil961994@gmail.com" class="contact-card btn-magnetic">
-                        <i class="fa-solid fa-envelope" style="color:var(--accent-cyan);"></i> vishalpatil961994@gmail.com
-                    </a>
-                    <a href="https://linkedin.com/in/vishalpatil961994" target="_blank" rel="noopener" class="contact-card btn-magnetic">
-                        <i class="fa-brands fa-linkedin" style="color:var(--accent-blue);"></i> LinkedIn Profile
-                    </a>
-                    <a href="https://github.com/vishalpatil" target="_blank" rel="noopener" class="contact-card btn-magnetic">
-                        <i class="fa-brands fa-github" style="color:#fff;"></i> GitHub
-                    </a>
+                    <a href="mailto:vishalpatil961994@gmail.com" class="contact-card btn-magnetic"><i class="fa-solid fa-envelope" style="color:var(--accent-cyan);"></i> vishalpatil961994@gmail.com</a>
+                    <a href="https://linkedin.com/in/vishalpatil961994" target="_blank" rel="noopener" class="contact-card btn-magnetic"><i class="fa-brands fa-linkedin" style="color:var(--accent-blue);"></i> LinkedIn Profile</a>
+                    <a href="https://github.com/vishal-pv" target="_blank" rel="noopener" class="contact-card btn-magnetic"><i class="fa-brands fa-github" style="color:#fff;"></i> GitHub</a>
                 </div>
             </div>
         </section>
@@ -1556,26 +1472,22 @@ $journey->continue();</span></pre>
 
     <footer role="contentinfo">
         <div class="container">
-            <p>Built with <span>&lt;3</span> by <strong>Vishal V Patil</strong> © 2026 | India</p>
+            <p>Built with <span>&lt;3</span> by <strong>Vishal V Patil</strong> © 2026 | Pune, India</p>
         </div>
     </footer>
 
     <script>
         (function() {
-            // ─────────────────────────────────────
-            // PARTICLE CANVAS
-            // ─────────────────────────────────────
+            // Particle canvas
             const canvas = document.getElementById('particle-canvas');
             const ctx = canvas.getContext('2d');
             let particles = [];
             let animationId;
             const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            window.addEventListener('resize', resizeCanvas);
+            function resizeCanvas() { canvas.width = innerWidth;
+                canvas.height = innerHeight; }
+            addEventListener('resize', resizeCanvas);
             resizeCanvas();
 
             const chars = '{}[]()<>/=+-*&|^~!@#$%^&*()_+`~;:.,?/\\'.split('');
@@ -1603,8 +1515,8 @@ $journey->continue();</span></pre>
                     }
                 }
                 draw() {
-                    ctx.font = `${this.size * 7}px 'JetBrains Mono', monospace`;
-                    ctx.fillStyle = `rgba(${this.color},${this.opacity * Math.min(this.life / this.maxLife, 1)})`;
+                    ctx.font = `${this.size * 7}px 'JetBrains Mono'`;
+                    ctx.fillStyle = `rgba(${this.color},${this.opacity * Math.min(this.life/this.maxLife,1)})`;
                     ctx.fillText(this.char, this.x, this.y);
                 }
             }
@@ -1618,299 +1530,86 @@ $journey->continue();</span></pre>
             }
             if (!isReduced) animateParticles();
 
-            // ─────────────────────────────────────
-            // HEADER SCROLL
-            // ─────────────────────────────────────
+            // Header scroll
             const header = document.getElementById('header');
-            window.addEventListener('scroll', () => {
-                header.classList.toggle('scrolled', window.scrollY > 50);
-            }, { passive: true });
+            addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 50), { passive: true });
 
-            // ─────────────────────────────────────
-            // MOBILE MENU
-            // ─────────────────────────────────────
+            // Mobile menu
             const menuBtn = document.getElementById('mobileMenuBtn');
-            const navLinks = document.getElementById('navLinks');
+            const nav = document.getElementById('navLinks');
             menuBtn.addEventListener('click', () => {
-                const isOpen = navLinks.classList.toggle('open');
-                menuBtn.setAttribute('aria-expanded', isOpen);
-                menuBtn.textContent = isOpen ? '✕' : '☰';
+                const open = nav.classList.toggle('open');
+                menuBtn.setAttribute('aria-expanded', open);
+                menuBtn.textContent = open ? '✕' : '☰';
             });
-            navLinks.querySelectorAll('a').forEach(a => {
-                a.addEventListener('click', () => {
-                    navLinks.classList.remove('open');
-                    menuBtn.setAttribute('aria-expanded', 'false');
-                    menuBtn.textContent = '☰';
-                });
-            });
+            nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+                nav.classList.remove('open');
+                menuBtn.setAttribute('aria-expanded', 'false');
+                menuBtn.textContent = '☰';
+            }));
 
-            // ─────────────────────────────────────
-            // TYPING ANIMATION
-            // ─────────────────────────────────────
+            // Typing animation
             const typingEl = document.getElementById('heroTyping');
-            const phrases = [
-                '> Building scalable web applications',
-                '> Crafting secure PHP backends',
-                '> Designing React frontends',
-                '> Optimizing database performance',
-                '> Architecting cloud solutions',
-                '> Delivering enterprise-grade software',
-            ];
-            let phraseIdx = 0,
-                charIdx = 0,
-                deleting = false,
-                typeSpeed = 60;
-
-            function typeLoop() {
-                if (isReduced) {
-                    typingEl.innerHTML = phrases[0] + '<span class="cursor"></span>';
-                    return;
-                }
-                const current = phrases[phraseIdx];
-                if (!deleting) {
-                    typingEl.innerHTML = current.substring(0, charIdx + 1) + '<span class="cursor"></span>';
-                    charIdx++;
-                    if (charIdx === current.length) {
-                        deleting = true;
-                        typeSpeed = 1800;
-                    } else {
-                        typeSpeed = 40 + Math.random() * 50;
-                    }
-                } else {
-                    typingEl.innerHTML = current.substring(0, charIdx) + '<span class="cursor"></span>';
-                    charIdx--;
-                    if (charIdx === 0) {
-                        deleting = false;
-                        phraseIdx = (phraseIdx + 1) % phrases.length;
-                        typeSpeed = 300;
-                    } else {
-                        typeSpeed = 20 + Math.random() * 25;
-                    }
-                }
-                setTimeout(typeLoop, typeSpeed);
+            const phrases = ['> Building scalable web applications', '> Crafting secure PHP backends', '> Designing React frontends'];
+            let pi = 0,
+                ci = 0,
+                del = false;
+            function type() {
+                if (isReduced) { typingEl.innerHTML = phrases[0] + '<span class="cursor"></span>'; return; }
+                const cur = phrases[pi];
+                typingEl.innerHTML = cur.substring(0, ci + (del ? 0 : 1)) + '<span class="cursor"></span>';
+                if (!del) { ci++; if (ci === cur.length) { del = true;
+                        setTimeout(type, 1600); return; } } else { ci--; if (ci === 0) { del = false;
+                        pi = (pi + 1) % phrases.length;
+                        setTimeout(type, 300); return; } }
+                setTimeout(type, del ? 25 : 50);
             }
-            setTimeout(typeLoop, 1200);
+            setTimeout(type, 1200);
 
-            // ─────────────────────────────────────
-            // MAGNETIC BUTTONS
-            // ─────────────────────────────────────
-            document.querySelectorAll('.btn-magnetic').forEach(btn => {
-                btn.addEventListener('mousemove', (e) => {
-                    if (isReduced) return;
-                    const rect = btn.getBoundingClientRect();
-                    const x = e.clientX - rect.left - rect.width / 2;
-                    const y = e.clientY - rect.top - rect.height / 2;
-                    btn.style.transform = `translate(${x * 0.12}px, ${y * 0.12}px)`;
-                });
-                btn.addEventListener('mouseleave', () => {
-                    btn.style.transform = '';
-                });
-            });
-
-            // ─────────────────────────────────────
-            // PDF RESUME DOWNLOAD
-            // ─────────────────────────────────────
-            const { jsPDF } = window.jspdf;
-
-            function downloadResumePDF() {
-                const doc = new jsPDF('p', 'mm', 'a4');
-                const pageWidth = doc.internal.pageSize.getWidth();
-                let y = 20;
-
-                // Title
-                doc.setFont('helvetica', 'bold');
-                doc.setFontSize(22);
-                doc.setTextColor(30, 30, 30);
-                doc.text('Vishal V Patil', pageWidth / 2, y, { align: 'center' });
-                y += 8;
-
-                doc.setFontSize(12);
-                doc.setFont('helvetica', 'normal');
-                doc.setTextColor(80, 80, 80);
-                doc.text('Senior Web Developer | India', pageWidth / 2, y, { align: 'center' });
-                y += 6;
-                doc.setFontSize(10);
-                doc.text('Email: vishalpatil961994@gmail.com | LinkedIn: linkedin.com/in/vishalpatil961994', pageWidth / 2, y, {
-                    align: 'center'
-                });
-                y += 12;
-
-                // Line
-                doc.setDrawColor(77, 166, 255);
-                doc.setLineWidth(0.5);
-                doc.line(20, y, pageWidth - 20, y);
-                y += 10;
-
-                // Objective
-                doc.setFont('helvetica', 'bold');
-                doc.setFontSize(13);
-                doc.setTextColor(30, 30, 30);
-                doc.text('OBJECTIVE', 20, y);
-                y += 7;
-                doc.setFont('helvetica', 'normal');
-                doc.setFontSize(10);
-                doc.setTextColor(60, 60, 60);
-                const objective = 'A skilled Web Developer with more than 7.6 years of experience in building and optimizing dynamic web applications. Expertise in PHP and React JS, enabling the delivery of robust and user-centric web applications. Proven ability to collaborate effectively within agile teams, adhering to best practices and delivering projects on time and within budget.';
-                const objectiveLines = doc.splitTextToSize(objective, pageWidth - 40);
-                doc.text(objectiveLines, 20, y);
-                y += objectiveLines.length * 5 + 6;
-
-                // Skills
-                doc.setFont('helvetica', 'bold');
-                doc.setFontSize(13);
-                doc.setTextColor(30, 30, 30);
-                doc.text('SKILLS AND ABILITIES', 20, y);
-                y += 7;
-                doc.setFont('helvetica', 'normal');
-                doc.setFontSize(10);
-                doc.setTextColor(60, 60, 60);
-                const skills = [
-                    'Languages: PHP, JavaScript, SQL, C',
-                    'Frameworks & Libraries: CodeIgniter, Laravel, React JS, jQuery, Bootstrap, HTML, CSS, AJAX',
-                    'APIs: GraphQL, REST, SOAP',
-                    'Tools & CRM: Git, Docker, Google Analytics, WordPress, Checkmarx',
-                    'AI Tools: Claude, Gemini, Antigravity, Kimi K2',
-                    'Databases: MySQL, MongoDB'
-                ];
-                skills.forEach(skill => {
-                    doc.text('• ' + skill, 25, y);
-                    y += 5.5;
-                });
-                y += 4;
-
-                // Line
-                doc.setDrawColor(77, 166, 255);
-                doc.line(20, y, pageWidth - 20, y);
-                y += 8;
-
-                // Experience
-                doc.setFont('helvetica', 'bold');
-                doc.setFontSize(13);
-                doc.setTextColor(30, 30, 30);
-                doc.text('EXPERIENCE', 20, y);
-                y += 8;
-
-                const experiences = [{
-                    title: 'Principal Software Engineer – CalSoft Inc.',
-                    period: 'July 2025 – Present',
-                    desc: 'Panasonic: Fleet Management - Enhanced application security, refactored Docker infrastructure, designed Laravel APIs. Technologies: Laravel, Symfony, React JS, MySQL, REST, Docker, AWS.'
-                }, {
-                    title: 'Web Developer – Cybage Software Pvt. Ltd.',
-                    period: 'Dec 2021 – July 2025',
-                    desc: 'JPMorgan FROSCH: Security improvements with Checkmarx. ShulCloud: Legacy PHP to React migration, payment gateways, Twilio SMS, GA4. Technologies: React JS, Laravel, Core PHP, Docker, MySQL, GraphQL.'
-                }, {
-                    title: 'Web Developer – SRV Media Pvt. Ltd.',
-                    period: 'Nov 2019 – Sep 2021',
-                    desc: 'Built client websites and WordPress solutions. Optimized performance achieving 40% faster load times. Technologies: PHP, WordPress, JavaScript, jQuery, HTML/CSS, MySQL.'
-                }, {
-                    title: 'Web Developer – Ubitech Systems',
-                    period: 'Aug 2018 – Sep 2019',
-                    desc: 'Full-stack development with CodeIgniter & Laravel. Designed RESTful APIs. Technologies: PHP, CodeIgniter, Laravel, JavaScript, jQuery, MySQL, REST.'
-                }];
-
-                experiences.forEach(exp => {
-                    doc.setFont('helvetica', 'bold');
-                    doc.setFontSize(11);
-                    doc.setTextColor(30, 30, 30);
-                    doc.text(exp.title, 20, y);
-                    y += 5;
-                    doc.setFont('helvetica', 'italic');
-                    doc.setFontSize(9);
-                    doc.setTextColor(100, 100, 100);
-                    doc.text(exp.period, 20, y);
-                    y += 4.5;
-                    doc.setFont('helvetica', 'normal');
-                    doc.setFontSize(10);
-                    doc.setTextColor(60, 60, 60);
-                    const descLines = doc.splitTextToSize(exp.desc, pageWidth - 40);
-                    doc.text(descLines, 20, y);
-                    y += descLines.length * 5 + 5;
-                });
-
-                // Save
-                doc.save('Vishal_V_Patil_Resume.pdf');
-                showToast();
-            }
-
-            function showToast() {
-                const toast = document.getElementById('toast');
-                toast.classList.add('show');
-                setTimeout(() => toast.classList.remove('show'), 2500);
-            }
-
-            document.getElementById('downloadResumeBtn').addEventListener('click', downloadResumePDF);
-
-            // ─────────────────────────────────────
-            // SCROLL-DRIVEN TIMELINE
-            // ─────────────────────────────────────
+            // Scroll-driven timeline
             const expSection = document.getElementById('experience');
             const progressFill = document.getElementById('progressFill');
             const progressDot = document.getElementById('progressDot');
-            const timelineItems = document.querySelectorAll('.timeline-item');
+            const items = document.querySelectorAll('.timeline-item');
             const codeFloat = document.getElementById('codeFloat');
-            const totalItems = timelineItems.length;
-
-            function updateTimelineProgress() {
+            const totalItems = items.length;
+            function updateStepper() {
                 const rect = expSection.getBoundingClientRect();
-                const windowH = window.innerHeight;
-                const sectionHeight = rect.height;
-                if (sectionHeight === 0) return;
-                let progress = (windowH - rect.top) / (sectionHeight + windowH);
+                const h = innerHeight;
+                const sh = rect.height;
+                if (!sh) return;
+                let progress = (h - rect.top) / (sh + h);
                 progress = Math.min(Math.max(progress, 0), 1);
                 progressFill.style.transform = `scaleY(${progress})`;
                 progressDot.style.top = `${progress * 100}%`;
                 const activeIdx = Math.min(Math.floor(progress * totalItems), totalItems - 1);
-                timelineItems.forEach((item, i) => item.classList.toggle('active', i === activeIdx));
+                items.forEach((item, i) => item.classList.toggle('active', i === activeIdx));
                 codeFloat.classList.toggle('reveal', progress > 0.15 && progress < 0.9);
             }
-            window.addEventListener('scroll', updateTimelineProgress, { passive: true });
-            window.addEventListener('resize', updateTimelineProgress);
-            updateTimelineProgress();
+            addEventListener('scroll', updateStepper, { passive: true });
+            addEventListener('resize', updateStepper);
+            updateStepper();
 
-            // ─────────────────────────────────────
-            // FADE IN ON SCROLL
-            // ─────────────────────────────────────
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
-            timelineItems.forEach(item => observer.observe(item));
+            // Fade items on scroll
+            const observer = new IntersectionObserver(entries => entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('visible');
+                    observer.unobserve(e.target); }
+            }), { threshold: 0.2 });
+            items.forEach(item => observer.observe(item));
 
-            // ─────────────────────────────────────
-            // REDUCED MOTION
-            // ─────────────────────────────────────
+            // Reduced motion
             if (isReduced) document.body.classList.add('reduced-motion');
-            window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
+            matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', e => {
                 document.body.classList.toggle('reduced-motion', e.matches);
-                if (e.matches && animationId) {
-                    cancelAnimationFrame(animationId);
-                    animationId = null;
-                } else if (!e.matches && !animationId) {
-                    animateParticles();
-                }
+                if (e.matches && animationId) cancelAnimationFrame(animationId);
+                else if (!e.matches && !animationId) animateParticles();
             });
 
-            // ─────────────────────────────────────
-            // KEYBOARD ESCAPE
-            // ─────────────────────────────────────
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && navLinks.classList.contains('open')) {
-                    navLinks.classList.remove('open');
+            // Escape key closes menu
+            addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('open')) { nav.classList.remove(
+                        'open');
                     menuBtn.setAttribute('aria-expanded', 'false');
-                    menuBtn.textContent = '☰';
-                    menuBtn.focus();
-                }
-            });
-
-            console.log('%c👨‍💻 Vishal V Patil %c| Senior Web Developer',
-                'font-size:1.1em;font-weight:bold;color:#4da6ff;',
-                'color:#b0b8c4;');
-            console.log('%c🚀 Portfolio ready. 7.6+ years of excellence.', 'color:#3dd9c1;font-style:italic;');
-            console.log('%c📍 Pune, India | 5 companies | 30+ projects', 'color:#6e7681;');
+                    menuBtn.textContent = '☰'; } });
         })();
     </script>
 </body>
