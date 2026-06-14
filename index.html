@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="Vishal V Patil - Senior Web Developer with 7.6+ years in PHP, React JS, Laravel. Building scalable, secure web applications.">
-    <meta name="keywords" content="Web Developer, PHP, React JS, Laravel, CodeIgniter, Senior Developer, Vishal Patil, Pune">
+    <meta name="keywords" content="Web Developer, PHP, React JS, Laravel, CodeIgniter, Senior Developer, Vishal Patil.">
     <meta property="og:title" content="Vishal V Patil | Senior Web Developer">
-    <meta property="og:description" content="7.6+ years crafting dynamic web applications with PHP, React JS & Laravel. Building scalable, secure, and user-centric solutions.">
+    <meta property="og:description" content="7.6+ years crafting dynamic web applications with PHP, React JS & Laravel.">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Vishal V Patil | Senior Web Developer">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://vishalpatil.dev">
     <title>Vishal V Patil | Senior Web Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+    </script>
     <style>
         :root {
             --bg-deep: #0a0a0f;
@@ -28,6 +31,7 @@
             --accent-pink: #f472b6;
             --accent-orange: #f59e4b;
             --accent-green: #4ade80;
+            --accent-yellow: #fbbf24;
             --syntax-keyword: #c586c0;
             --syntax-function: #dcdcaa;
             --syntax-string: #ce9178;
@@ -41,11 +45,15 @@
             --radius-md: 10px;
             --radius-lg: 16px;
             --radius-xl: 20px;
-            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            --radius-2xl: 28px;
+            --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+            --transition-fast: 120ms cubic-bezier(0.4, 0, 0.2, 1);
             --transition-smooth: 280ms cubic-bezier(0.4, 0, 0.2, 1);
             --transition-spring: 450ms cubic-bezier(0.34, 1.56, 0.64, 1);
             --max-width: 1240px;
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+            --shadow-glow: 0 0 40px rgba(77, 166, 255, 0.15);
         }
 
         * {
@@ -56,13 +64,13 @@
         html {
             scroll-behavior: smooth;
             scrollbar-width: thin;
-            scrollbar-color: #2a3040 #0a0a0f;
+            scrollbar-color: #2a3040 var(--bg-deep);
         }
         ::-webkit-scrollbar {
             width: 5px;
         }
         ::-webkit-scrollbar-track {
-            background: #0a0a0f;
+            background: var(--bg-deep);
         }
         ::-webkit-scrollbar-thumb {
             background: #2a3040;
@@ -75,9 +83,11 @@
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            margin: 0;
+            -moz-osx-font-smoothing: grayscale;
         }
-        body.reduced-motion * {
+        body.reduced-motion *,
+        body.reduced-motion *::before,
+        body.reduced-motion *::after {
             animation-duration: 0.001ms !important;
             transition-duration: 0.001ms !important;
         }
@@ -128,7 +138,7 @@
             font-family: var(--font-mono);
             font-size: 1.25rem;
             font-weight: 700;
-            color: #fff;
+            color: var(--text-bright);
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -142,6 +152,10 @@
             animation: blink-cursor 1.2s step-end infinite;
         }
         @keyframes blink-cursor {
+            0%,
+            100% {
+                opacity: 1;
+            }
             50% {
                 opacity: 0;
             }
@@ -157,13 +171,13 @@
             text-decoration: none;
             font-size: 0.88rem;
             font-weight: 500;
-            transition: color 120ms;
-            padding: 4px 0;
+            transition: color var(--transition-fast);
             position: relative;
+            padding: 4px 0;
         }
         .nav-links a:hover,
         .nav-links a:focus-visible {
-            color: #fff;
+            color: var(--text-bright);
         }
         .nav-links a::after {
             content: '';
@@ -201,7 +215,7 @@
             display: none;
             background: none;
             border: 1px solid var(--border-medium);
-            color: #fff;
+            color: var(--text-bright);
             font-size: 1.4rem;
             cursor: pointer;
             padding: 4px 12px;
@@ -240,10 +254,10 @@
             letter-spacing: -0.8px;
             line-height: 1.15;
             margin-bottom: 14px;
-            color: #fff;
+            color: var(--text-bright);
         }
         .gradient-text {
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan), var(--accent-purple));
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-cyan) 40%, var(--accent-purple) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -259,33 +273,11 @@
                 background-position: 100% 50%;
             }
         }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            padding: 13px 26px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            transition: all var(--transition-smooth);
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, #4da6ff, #3d8fd9);
-            color: #fff;
-            box-shadow: 0 0 28px rgba(77, 166, 255, 0.4);
-        }
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border-medium);
-        }
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.03);
-            border-color: var(--border-bright);
-            transform: translateY(-2px);
+        .section-subtitle {
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            font-size: 1rem;
         }
 
         /* HERO */
@@ -301,12 +293,129 @@
             gap: 50px;
             align-items: center;
         }
+        .hero-content {
+            animation: fadeInUp 0.7s ease forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(61, 217, 193, 0.08);
+            border: 1px solid rgba(61, 217, 193, 0.25);
+            border-radius: 50px;
+            padding: 7px 15px;
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+            margin-bottom: 20px;
+            font-family: var(--font-mono);
+        }
+        .hero-status-dot {
+            width: 7px;
+            height: 7px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+            box-shadow: 0 0 8px #10b981;
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                box-shadow: 0 0 6px #10b981;
+            }
+            50% {
+                box-shadow: 0 0 18px #10b981, 0 0 30px #10b981;
+            }
+        }
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.06;
+            margin-bottom: 18px;
+        }
+        .hero-title .highlight-name {
+            background: linear-gradient(135deg, #fff 0%, #c0d8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
         .hero-typing {
             font-family: var(--font-mono);
             font-size: 1rem;
             color: var(--syntax-string);
             margin-bottom: 20px;
             min-height: 26px;
+        }
+        .hero-typing .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 18px;
+            background: var(--accent-cyan);
+            margin-left: 2px;
+            animation: blink-cursor 1s step-end infinite;
+            vertical-align: middle;
+        }
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 520px;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 13px 26px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all var(--transition-smooth);
+            font-family: var(--font-sans);
+            letter-spacing: 0.2px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #4da6ff 0%, #3d8fd9 100%);
+            color: #fff;
+            box-shadow: 0 0 28px rgba(77, 166, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .btn-primary:hover {
+            box-shadow: 0 0 48px rgba(77, 166, 255, 0.6);
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-medium);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: var(--border-bright);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.04);
+        }
+        .btn-magnetic {
+            transition: transform var(--transition-spring);
         }
         .hero-stats {
             display: grid;
@@ -321,12 +430,113 @@
             padding: 16px 14px;
             text-align: center;
             backdrop-filter: blur(8px);
+            transition: all var(--transition-smooth);
+        }
+        .stat-card:hover {
+            border-color: var(--border-bright);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
         }
         .stat-value {
             font-size: 1.6rem;
             font-weight: 700;
-            color: #fff;
+            letter-spacing: -0.8px;
+            color: var(--text-bright);
             font-family: var(--font-mono);
+        }
+        .stat-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+        }
+        .hero-code-window {
+            background: var(--bg-editor);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-subtle);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+            width: 100%;
+            max-width: 440px;
+            animation: float-window 5s ease-in-out infinite;
+        }
+        @keyframes float-window {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            33% {
+                transform: translateY(-10px);
+            }
+            66% {
+                transform: translateY(5px);
+            }
+        }
+        .code-window-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 14px;
+            background: #1a1e2b;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .window-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .window-dot.red {
+            background: #ff5f56;
+        }
+        .window-dot.yellow {
+            background: #ffbd2e;
+        }
+        .window-dot.green {
+            background: #27c93f;
+        }
+        .window-title {
+            flex: 1;
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+        .code-window-body {
+            padding: 18px 16px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            line-height: 1.9;
+            min-height: 240px;
+        }
+        .code-line {
+            display: flex;
+            gap: 14px;
+        }
+        .line-number {
+            color: #3a4560;
+            min-width: 22px;
+            text-align: right;
+            user-select: none;
+            flex-shrink: 0;
+        }
+        .code-content .kw {
+            color: var(--syntax-keyword);
+        }
+        .code-content .fn {
+            color: var(--syntax-function);
+        }
+        .code-content .str {
+            color: var(--syntax-string);
+        }
+        .code-content .var {
+            color: var(--syntax-variable);
+        }
+        .code-content .cm {
+            color: var(--syntax-comment);
         }
 
         /* BENTO GRID */
@@ -342,6 +552,13 @@
             padding: 26px;
             backdrop-filter: blur(8px);
             transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+        .bento-card:hover {
+            border-color: var(--border-medium);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
         }
         .bento-card.span-2 {
             grid-column: span 2;
@@ -349,10 +566,59 @@
         .bento-card.span-3 {
             grid-column: span 3;
         }
+        .bento-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            margin-bottom: 6px;
+            color: var(--text-bright);
+        }
+        .bento-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .card-icon-wrap {
+            width: 42px;
+            height: 42px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            font-size: 1.3rem;
+        }
+        .card-icon-wrap.blue {
+            background: rgba(77, 166, 255, 0.12);
+            color: var(--accent-blue);
+        }
+        .card-icon-wrap.cyan {
+            background: rgba(61, 217, 193, 0.12);
+            color: var(--accent-cyan);
+        }
+        .card-icon-wrap.purple {
+            background: rgba(167, 139, 250, 0.12);
+            color: var(--accent-purple);
+        }
+        .card-icon-wrap.orange {
+            background: rgba(245, 158, 75, 0.12);
+            color: var(--accent-orange);
+        }
+        .card-icon-wrap.green {
+            background: rgba(74, 222, 128, 0.12);
+            color: var(--accent-green);
+        }
+        .card-icon-wrap.pink {
+            background: rgba(244, 114, 182, 0.12);
+            color: var(--accent-pink);
+        }
+
+        /* TECH TAGS */
         .tech-orbit-container {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
+            padding: 4px 0;
         }
         .tech-tag {
             display: inline-flex;
@@ -363,43 +629,60 @@
             background: rgba(21, 26, 36, 0.7);
             border: 1px solid var(--border-subtle);
             font-size: 0.8rem;
-            font-family: var(--font-mono);
+            font-weight: 500;
             color: var(--text-secondary);
             transition: all var(--transition-smooth);
+            cursor: default;
+            font-family: var(--font-mono);
+            letter-spacing: 0.2px;
         }
         .tech-tag:hover {
+            color: var(--text-bright);
             border-color: var(--accent-blue);
             box-shadow: 0 0 20px rgba(77, 166, 255, 0.2);
             transform: translateY(-2px);
-            color: #fff;
+            background: rgba(77, 166, 255, 0.06);
+        }
+        .tech-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent-cyan);
+            box-shadow: 0 0 6px var(--accent-cyan);
+            flex-shrink: 0;
         }
 
-        /* FLOATING ICONS */
+        /* FLOATING TECH ICONS WITH TOOLTIPS */
         .floating-tech-icons {
             display: flex;
             flex-wrap: wrap;
-            gap: 18px;
+            gap: 16px;
             justify-content: center;
-            margin: 36px 0;
+            padding: 10px 0;
         }
         .floating-icon {
-            width: 56px;
-            height: 56px;
+            width: 52px;
+            height: 52px;
             border-radius: var(--radius-md);
             background: rgba(21, 26, 36, 0.7);
             border: 1px solid var(--border-subtle);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            animation: float-icon 3s ease-in-out infinite;
+            font-size: 1.5rem;
             transition: all var(--transition-spring);
             cursor: default;
+            position: relative;
+            animation: float-icon 3s ease-in-out infinite;
         }
-        .floating-icon:hover {
-            transform: translateY(-8px) scale(1.1);
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 28px rgba(77, 166, 255, 0.4);
+        .floating-icon:nth-child(odd) {
+            animation-delay: 0s;
+        }
+        .floating-icon:nth-child(even) {
+            animation-delay: 1.5s;
+        }
+        .floating-icon:nth-child(3n) {
+            animation-delay: 0.8s;
         }
         @keyframes float-icon {
             0%,
@@ -407,8 +690,42 @@
                 transform: translateY(0);
             }
             50% {
-                transform: translateY(-12px);
+                transform: translateY(-10px);
             }
+        }
+        .floating-icon:hover {
+            transform: translateY(-8px) scale(1.15);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 28px rgba(77, 166, 255, 0.4);
+            animation-play-state: paused;
+            z-index: 10;
+        }
+        .floating-icon .tooltip {
+            position: absolute;
+            bottom: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-editor);
+            color: var(--text-bright);
+            font-size: 0.65rem;
+            padding: 4px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-fast);
+            font-family: var(--font-sans);
+            letter-spacing: 0.3px;
+            border: 1px solid var(--border-subtle);
+        }
+        .floating-icon:hover .tooltip {
+            opacity: 1;
+        }
+        .floating-icon i {
+            transition: color var(--transition-fast);
+        }
+        .floating-icon:hover i {
+            color: var(--text-bright);
         }
 
         /* PROJECT CARDS */
@@ -418,14 +735,50 @@
             border-radius: var(--radius-xl);
             overflow: hidden;
             transition: all var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
         }
         .project-card:hover {
             border-color: var(--border-medium);
             transform: translateY(-5px);
             box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
         }
+        .project-card-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: #1a1e2b;
+            border-bottom: 1px solid var(--border-subtle);
+        }
         .project-card-body {
             padding: 22px;
+        }
+        .project-card-body .project-company {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--accent-cyan);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .project-card-body h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            margin-bottom: 8px;
+            color: var(--text-bright);
+        }
+        .project-card-body p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
         }
         .project-tag {
             font-size: 0.68rem;
@@ -435,9 +788,23 @@
             color: var(--syntax-variable);
             font-family: var(--font-mono);
             border: 1px solid rgba(77, 166, 255, 0.15);
+            letter-spacing: 0.2px;
+        }
+        .project-highlight {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.7rem;
+            color: var(--accent-green);
+            font-family: var(--font-mono);
+            margin-top: 8px;
+        }
+        .project-highlight::before {
+            content: '✓';
+            font-weight: bold;
         }
 
-        /* TIMELINE – PERFECTLY ALIGNED STEPPER */
+        /* TIMELINE - PERFECTLY ALIGNED */
         #experience {
             position: relative;
             overflow: visible;
@@ -447,7 +814,6 @@
             margin-top: 48px;
             padding-left: 0;
         }
-        /* Background track */
         .timeline::before {
             content: '';
             position: absolute;
@@ -455,10 +821,9 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 2px;
         }
-        /* Progress fill track */
         .timeline-progress {
             position: absolute;
             left: 20px;
@@ -481,11 +846,9 @@
             box-shadow: 0 0 16px rgba(77, 166, 255, 0.6), 0 0 30px rgba(61, 217, 193, 0.4);
             transition: transform 0.05s linear;
         }
-        /* Moving dot – centered on line (line center = 20 + 1.5 = 21.5px) */
         .timeline-progress-dot {
             position: absolute;
             left: -5.5px;
-            /* 21.5 - 7 = 14.5; relative to parent (left 20) = -5.5 */
             top: 0;
             width: 14px;
             height: 14px;
@@ -499,10 +862,10 @@
         @keyframes dot-pulse {
             0%,
             100% {
-                box-shadow: 0 0 25px #4da6ff, 0 0 50px #3dd9c1;
+                box-shadow: 0 0 25px #4da6ff, 0 0 50px #3dd9c1, 0 0 80px rgba(77, 166, 255, 0.7);
             }
             50% {
-                box-shadow: 0 0 40px #4da6ff, 0 0 80px #3dd9c1;
+                box-shadow: 0 0 35px #4da6ff, 0 0 70px #3dd9c1, 0 0 100px rgba(77, 166, 255, 0.9);
             }
         }
         .timeline-item {
@@ -517,7 +880,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-        /* Static dot – centered on line (center = 21.5, left = 21.5 - 6 = 15.5) */
         .timeline-dot-static {
             position: absolute;
             left: 15.5px;
@@ -532,21 +894,23 @@
         }
         .timeline-item.active .timeline-dot-static {
             background: var(--accent-cyan);
-            box-shadow: 0 0 24px var(--accent-cyan);
+            box-shadow: 0 0 24px var(--accent-cyan), 0 0 40px rgba(61, 217, 193, 0.5);
         }
         .timeline-period {
             font-family: var(--font-mono);
             font-size: 0.72rem;
             color: var(--accent-cyan);
             letter-spacing: 1px;
+            margin-bottom: 4px;
         }
         .timeline-item h3 {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            color: #fff;
+            letter-spacing: -0.3px;
+            color: var(--text-bright);
         }
         .timeline-company {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--syntax-function);
             font-family: var(--font-mono);
         }
@@ -576,14 +940,16 @@
         .experience-code-float {
             position: absolute;
             right: 20px;
-            top: 25%;
-            width: 260px;
+            top: 20%;
+            width: 250px;
             background: rgba(21, 26, 36, 0.85);
             border: 1px solid var(--border-subtle);
             border-radius: var(--radius-lg);
+            backdrop-filter: blur(12px);
             padding: 16px;
             font-family: var(--font-mono);
             font-size: 0.7rem;
+            color: var(--text-secondary);
             opacity: 0;
             transform: translateX(30px);
             transition: opacity 0.8s ease, transform 0.8s ease;
@@ -594,8 +960,17 @@
             opacity: 0.8;
             transform: translateX(0);
         }
+        .experience-code-float pre {
+            margin: 0;
+            color: #9cdcfe;
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
 
         /* CONTACT */
+        #contact {
+            text-align: center;
+        }
         .contact-cards {
             display: flex;
             gap: 14px;
@@ -614,28 +989,74 @@
             color: var(--text-primary);
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.9rem;
             transition: all var(--transition-smooth);
         }
         .contact-card:hover {
             border-color: var(--accent-blue);
             box-shadow: 0 0 24px rgba(77, 166, 255, 0.2);
             transform: translateY(-2px);
+            color: var(--text-bright);
         }
 
+        /* FOOTER */
         footer {
             text-align: center;
             padding: 32px 24px;
             border-top: 1px solid var(--border-subtle);
             color: var(--text-muted);
             font-size: 0.8rem;
+            position: relative;
+            z-index: 1;
             font-family: var(--font-mono);
+        }
+        footer span {
+            color: var(--accent-pink);
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--accent-green);
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            z-index: 999;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 8px 32px rgba(74, 222, 128, 0.4);
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
         }
 
         /* RESPONSIVE */
         @media (max-width: 1024px) {
             .hero-grid {
                 grid-template-columns: 1fr;
+                gap: 36px;
                 text-align: center;
+            }
+            .hero-description {
+                margin: 0 auto 28px;
+            }
+            .hero-actions {
+                justify-content: center;
             }
             .hero-stats {
                 grid-template-columns: repeat(2, 1fr);
@@ -660,11 +1081,12 @@
                 right: 0;
                 width: 280px;
                 height: 100vh;
-                background: #0d1117;
+                background: var(--bg-primary);
                 padding: 80px 28px 28px;
                 gap: 18px;
                 border-left: 1px solid var(--border-subtle);
                 z-index: 100;
+                box-shadow: -8px 0 32px rgba(0, 0, 0, 0.7);
             }
             .mobile-menu-btn {
                 display: block;
@@ -681,40 +1103,72 @@
                 padding: 0 16px;
             }
             .timeline {
-                /* Adjust line position for small screens */
+                padding-left: 0;
             }
-            .timeline::before {
-                left: 15px;
-            }
+            .timeline::before,
             .timeline-progress {
-                left: 15px;
-            }
-            .timeline-progress-dot {
-                left: -5.5px;
-                /* still centered on line if line center = 15+1.5 =16.5, dot left = -5.5 -> 15-5.5=9.5? No, need to recalc. Override for mobile. */
-                left: -5px;
-                /* adjust */
+                left: 14px;
             }
             .timeline-dot-static {
-                left: 12px;
-                /* approx center */
+                left: 10px;
+            }
+            .timeline-progress-dot {
+                left: -4px;
             }
             .timeline-item {
-                padding-left: 40px;
+                padding-left: 38px;
+            }
+            .hero-code-window {
+                max-width: 300px;
+            }
+            .code-window-body {
+                font-size: 0.68rem;
+                padding: 12px;
+            }
+            .floating-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 1.2rem;
+            }
+            .stat-value {
+                font-size: 1.3rem;
+            }
+            .btn {
+                padding: 11px 20px;
+                font-size: 0.8rem;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-code-window,
+            .floating-icon,
+            .hero-visual {
+                animation: none !important;
+            }
+            .timeline-progress-fill,
+            .timeline-progress-dot {
+                transition: none !important;
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <canvas id="particle-canvas" aria-hidden="true"></canvas>
 
-    <header id="header">
+    <!-- Toast -->
+    <div class="toast" id="toast">✅ Resume downloaded successfully!</div>
+
+    <!-- Header -->
+    <header id="header" role="banner">
         <div class="header-inner">
-            <a href="#" class="logo"><span class="logo-bracket">&lt;</span>VP<span class="logo-bracket">/&gt;</span><span class="logo-slash">|</span></a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu" aria-expanded="false">☰</button>
-            <nav>
-                <ul class="nav-links" id="navLinks">
+            <a href="#" class="logo" aria-label="Vishal Patil Home">
+                <span class="logo-bracket">&lt;</span>VP<span class="logo-bracket">/&gt;</span><span class="logo-slash">|</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+            <nav aria-label="Main navigation">
+                <ul class="nav-links" id="navLinks" role="list">
                     <li><a href="#about">About</a></li>
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
@@ -727,36 +1181,65 @@
 
     <main>
         <!-- HERO -->
-        <section id="hero">
+        <section id="hero" aria-label="Hero introduction">
             <div class="container">
                 <div class="hero-grid">
                     <div class="hero-content">
-                        <h1 class="hero-title" style="font-size:clamp(2.8rem,5vw,4.5rem);">Vishal V Patil<br><span class="gradient-text">Senior Web Developer</span></h1>
-                        <div class="hero-typing" id="heroTyping">&gt; Building scalable web applications<span class="cursor"></span></div>
-                        <p style="color:var(--text-secondary);max-width:500px;">7.6+ years crafting dynamic, secure web apps with PHP, React JS & Laravel.</p>
-                        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;">
-                            <a href="#contact" class="btn btn-primary">Let's Connect</a>
-                            <a href="resume.pdf" download class="btn btn-secondary">📄 Resume</a>
-                            <a href="https://linkedin.com/in/vishalpatil" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn</a>
+                        <div class="hero-status">
+                            <span class="hero-status-dot"></span> Open to Senior & Lead Roles
+                        </div>
+                        <h1 class="hero-title">
+                            <span class="highlight-name">Vishal V Patil</span><br>
+                            <span class="gradient-text">Senior Web Developer</span>
+                        </h1>
+                        <div class="hero-typing" id="heroTyping">
+                            &gt; Building scalable web applications<span class="cursor"></span>
+                        </div>
+                        <p class="hero-description">
+                            7.6+ years of experience crafting dynamic, secure, and user-centric web applications.
+                            Specializing in <strong>PHP</strong>, <strong>React JS</strong>, and <strong>Laravel</strong> —
+                            delivering robust solutions that drive business growth.
+                        </p>
+                        <div class="hero-actions">
+                            <a href="#contact" class="btn btn-primary btn-magnetic">
+                                Let's Connect
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                            <button class="btn btn-secondary btn-magnetic" id="downloadResumeBtn" aria-label="Download resume as PDF">
+                                <i class="fa-solid fa-download"></i> Resume
+                            </button>
+                            <a href="https://linkedin.com/in/vishalpatil961994" target="_blank" rel="noopener" class="btn btn-secondary btn-magnetic">
+                                <i class="fa-brands fa-linkedin"></i> LinkedIn
+                            </a>
                         </div>
                         <div class="hero-stats">
-                            <div class="stat-card"><div class="stat-value">7.6+</div><div class="stat-label">Years</div></div>
+                            <div class="stat-card"><div class="stat-value">7.6+</div><div class="stat-label">Years Exp.</div></div>
                             <div class="stat-card"><div class="stat-value">30+</div><div class="stat-label">Projects</div></div>
-                            <div class="stat-card"><div class="stat-value">15+</div><div class="stat-label">Technologies</div></div>
+                            <div class="stat-card"><div class="stat-value">20+</div><div class="stat-label">Technologies</div></div>
                             <div class="stat-card"><div class="stat-value">5</div><div class="stat-label">Companies</div></div>
                         </div>
                     </div>
-                    <div style="display:flex;justify-content:center;">
-                        <div style="background:var(--bg-editor);border-radius:var(--radius-lg);border:1px solid var(--border-subtle);padding:16px;font-family:var(--font-mono);font-size:0.8rem;line-height:1.8;min-width:280px;">
-                            <div style="color:#6a9955;">// vishal.jsx</div>
-                            <div><span style="color:#c586c0;">const</span> <span style="color:#dcdcaa;">Vishal</span> = () => {</div>
-                            <div>  <span style="color:#c586c0;">return</span> (</div>
-                            <div>    &lt;<span style="color:#569cd6;">Developer</span></div>
-                            <div>      <span style="color:#9cdcfe;">role</span>=<span style="color:#ce9178;">"Senior"</span></div>
-                            <div>      <span style="color:#9cdcfe;">stack</span>={[<span style="color:#ce9178;">"PHP"</span>, <span style="color:#ce9178;">"React"</span>, <span style="color:#ce9178;">"Laravel"</span>]}</div>
-                            <div>    /&gt;</div>
-                            <div>  );</div>
-                            <div>};</div>
+                    <div class="hero-visual">
+                        <div class="hero-code-window">
+                            <div class="code-window-header">
+                                <span class="window-dot red"></span>
+                                <span class="window-dot yellow"></span>
+                                <span class="window-dot green"></span>
+                                <span class="window-title">vishal.jsx</span>
+                            </div>
+                            <div class="code-window-body">
+                                <div class="code-line"><span class="line-number">1</span><span class="code-content"><span class="kw">const</span> <span class="fn">Vishal</span> = () => {</span></div>
+                                <div class="code-line"><span class="line-number">2</span><span class="code-content">  <span class="kw">return</span> (</span></div>
+                                <div class="code-line"><span class="line-number">3</span><span class="code-content">    &lt;<span class="kw">Developer</span></span></div>
+                                <div class="code-line"><span class="line-number">4</span><span class="code-content">      <span class="var">role</span>=<span class="str">"Senior"</span></span></div>
+                                <div class="code-line"><span class="line-number">5</span><span class="code-content">      <span class="var">stack</span>={[<span class="str">"PHP"</span>, <span class="str">"React"</span>, <span class="str">"Laravel"</span>]}</span></div>
+                                <div class="code-line"><span class="line-number">6</span><span class="code-content">      <span class="var">experience</span>=<span class="str">"7.6+ years"</span></span></div>
+                                <div class="code-line"><span class="line-number">7</span><span class="code-content">      <span class="var">location</span>=<span class="str">"India"</span></span></div>
+                                <div class="code-line"><span class="line-number">8</span><span class="code-content">    /&gt;</span></div>
+                                <div class="code-line"><span class="line-number">9</span><span class="code-content">  );</span></div>
+                                <div class="code-line"><span class="line-number">10</span><span class="code-content">};</span></div>
+                                <div class="code-line"><span class="line-number">11</span><span class="code-content"><span class="cm">// Building for scale 🚀</span></span></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -764,56 +1247,231 @@
         </section>
 
         <!-- ABOUT -->
-        <section id="about">
+        <section id="about" aria-labelledby="about-heading">
             <div class="container">
-                <span class="section-label">About</span>
-                <h2 class="section-title">Engineering <span class="gradient-text">Excellence</span></h2>
+                <span class="section-label">About Me</span>
+                <h2 class="section-title" id="about-heading">Engineering <span class="gradient-text">Excellence</span></h2>
+                <p class="section-subtitle">A passionate web developer with deep expertise in building scalable, secure applications that solve real business problems.</p>
                 <div class="bento-grid" style="margin-top:40px;">
-                    <div class="bento-card span-2"><h3>Professional Summary</h3><p>Skilled Web Developer with <strong>7.6+ years</strong> in PHP, React JS, and Laravel. I deliver robust, user‑centric applications within agile teams, on time and within budget.</p></div>
-                    <div class="bento-card"><h3>📍 Pune, India</h3><p>+91 9637785599<br>vishalpatil961994@gmail.com</p></div>
+                    <div class="bento-card span-2">
+                        <div class="card-icon-wrap blue"><i class="fa-solid fa-code"></i></div>
+                        <h3>Professional Summary</h3>
+                        <p>Skilled Web Developer with <strong>7.6+ years</strong> of experience in building and optimizing dynamic web applications. Expertise in <strong>PHP</strong> and <strong>React JS</strong>, enabling the delivery of robust and user-centric web applications. Proven ability to collaborate effectively within agile teams, adhering to best practices and delivering projects on time and within budget. Continuously seeking to expand knowledge and adapt to the evolving landscape of web development.</p>
+                    </div>
+                    <div class="bento-card">
+                        <div class="card-icon-wrap cyan"><i class="fa-solid fa-location-dot"></i></div>
+                        <h3>Location</h3>
+                        <p>India<br>Available for remote & hybrid roles worldwide.</p>
+                        <p style="margin-top:8px;font-family:var(--font-mono);font-size:0.75rem;color:var(--accent-cyan);">vishalpatil961994@gmail.com</p>
+                    </div>
+                    <div class="bento-card">
+                        <div class="card-icon-wrap purple"><i class="fa-solid fa-brain"></i></div>
+                        <h3>Approach</h3>
+                        <p>Clean architecture with pragmatic execution. Every line of code written with maintainability, security, and performance in mind.</p>
+                    </div>
+                    <div class="bento-card span-2">
+                        <div class="card-icon-wrap orange"><i class="fa-solid fa-robot"></i></div>
+                        <h3>AI & Modern Tools</h3>
+                        <p>Actively leveraging AI tools like <strong>Claude, Gemini, Antigravity, and Kimi K2</strong> to accelerate development workflows, enhance code quality, and stay at the forefront of modern engineering practices.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- SKILLS -->
-        <section id="skills">
+        <section id="skills" aria-labelledby="skills-heading">
             <div class="container">
                 <span class="section-label">Skills</span>
-                <h2 class="section-title">Technology <span class="gradient-text">Arsenal</span></h2>
-                <div class="floating-tech-icons">
-                    <span class="floating-icon">🐘</span>
-                    <span class="floating-icon">⚛️</span>
-                    <span class="floating-icon">🔷</span>
-                    <span class="floating-icon">🟨</span>
-                    <span class="floating-icon">🐬</span>
-                    <span class="floating-icon">🐳</span>
+                <h2 class="section-title" id="skills-heading">Technology <span class="gradient-text">Arsenal</span></h2>
+                <p class="section-subtitle">Technologies I work with daily — from frontend to backend, databases to DevOps. Hover over icons to see technology names.</p>
+
+                <!-- Floating Tech Icons with Tooltips -->
+                <div class="floating-tech-icons" style="margin:36px 0;">
+                    <span class="floating-icon" title="PHP"><i class="fa-brands fa-php" style="color:#8892be;"></i><span class="tooltip">PHP</span></span>
+                    <span class="floating-icon" title="React JS"><i class="fa-brands fa-react" style="color:#61dafb;"></i><span class="tooltip">React JS</span></span>
+                    <span class="floating-icon" title="Laravel"><i class="fa-brands fa-laravel" style="color:#f9322c;"></i><span class="tooltip">Laravel</span></span>
+                    <span class="floating-icon" title="JavaScript"><i class="fa-brands fa-js" style="color:#f7df1e;"></i><span class="tooltip">JavaScript</span></span>
+                    <span class="floating-icon" title="MySQL"><i class="fa-solid fa-database" style="color:#00758f;"></i><span class="tooltip">MySQL</span></span>
+                    <span class="floating-icon" title="Docker"><i class="fa-brands fa-docker" style="color:#2496ed;"></i><span class="tooltip">Docker</span></span>
+                    <span class="floating-icon" title="Git"><i class="fa-brands fa-git-alt" style="color:#f05032;"></i><span class="tooltip">Git</span></span>
+                    <span class="floating-icon" title="AWS"><i class="fa-brands fa-aws" style="color:#ff9900;"></i><span class="tooltip">AWS</span></span>
+                    <span class="floating-icon" title="GraphQL"><i class="fa-solid fa-circle-nodes" style="color:#e535ab;"></i><span class="tooltip">GraphQL</span></span>
+                    <span class="floating-icon" title="WordPress"><i class="fa-brands fa-wordpress" style="color:#21759b;"></i><span class="tooltip">WordPress</span></span>
+                    <span class="floating-icon" title="jQuery"><i class="fa-solid fa-code" style="color:#78cff5;"></i><span class="tooltip">jQuery</span></span>
+                    <span class="floating-icon" title="Bootstrap"><i class="fa-brands fa-bootstrap" style="color:#7952b3;"></i><span class="tooltip">Bootstrap</span></span>
+                    <span class="floating-icon" title="MongoDB"><i class="fa-solid fa-leaf" style="color:#47a248;"></i><span class="tooltip">MongoDB</span></span>
+                    <span class="floating-icon" title="Google Analytics"><i class="fa-brands fa-google" style="color:#4285f4;"></i><span class="tooltip">Google Analytics</span></span>
+                    <span class="floating-icon" title="AI Tools"><i class="fa-solid fa-wand-magic-sparkles" style="color:#a78bfa;"></i><span class="tooltip">AI Tools</span></span>
                 </div>
-                <div class="bento-grid">
-                    <div class="bento-card"><h3>Languages</h3><div class="tech-orbit-container"><span class="tech-tag">PHP</span><span class="tech-tag">JavaScript</span><span class="tech-tag">SQL</span></div></div>
-                    <div class="bento-card"><h3>Frameworks</h3><div class="tech-orbit-container"><span class="tech-tag">Laravel</span><span class="tech-tag">React</span><span class="tech-tag">CodeIgniter</span></div></div>
-                    <div class="bento-card"><h3>Tools</h3><div class="tech-orbit-container"><span class="tech-tag">Docker</span><span class="tech-tag">Git</span><span class="tech-tag">AWS</span></div></div>
+
+                <div class="bento-grid" style="margin-top:20px;">
+                    <div class="bento-card">
+                        <div class="card-icon-wrap blue"><i class="fa-solid fa-language"></i></div>
+                        <h3>Languages</h3>
+                        <div class="tech-orbit-container">
+                            <span class="tech-tag"><span class="tech-dot"></span>PHP</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>JavaScript</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>SQL</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>C</span>
+                        </div>
+                    </div>
+                    <div class="bento-card">
+                        <div class="card-icon-wrap cyan"><i class="fa-solid fa-layer-group"></i></div>
+                        <h3>Frameworks & Libraries</h3>
+                        <div class="tech-orbit-container">
+                            <span class="tech-tag"><span class="tech-dot"></span>CodeIgniter</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>Laravel</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>React JS</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>jQuery</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>Bootstrap</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>HTML</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>CSS</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>AJAX</span>
+                        </div>
+                    </div>
+                    <div class="bento-card">
+                        <div class="card-icon-wrap purple"><i class="fa-solid fa-plug"></i></div>
+                        <h3>APIs</h3>
+                        <div class="tech-orbit-container">
+                            <span class="tech-tag"><span class="tech-dot"></span>GraphQL</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>REST</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>SOAP</span>
+                        </div>
+                    </div>
+                    <div class="bento-card">
+                        <div class="card-icon-wrap orange"><i class="fa-solid fa-toolbox"></i></div>
+                        <h3>Tools & CRM</h3>
+                        <div class="tech-orbit-container">
+                            <span class="tech-tag"><span class="tech-dot"></span>Git</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>Docker</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>Google Analytics</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>WordPress</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>Checkmarx</span>
+                        </div>
+                    </div>
+                    <div class="bento-card">
+                        <div class="card-icon-wrap pink"><i class="fa-solid fa-robot"></i></div>
+                        <h3>AI Tools</h3>
+                        <div class="tech-orbit-container">
+                            <span class="tech-tag"><span class="tech-dot"></span>Claude</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>Gemini</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>Antigravity</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>Kimi K2</span>
+                        </div>
+                    </div>
+                    <div class="bento-card">
+                        <div class="card-icon-wrap green"><i class="fa-solid fa-database"></i></div>
+                        <h3>Databases</h3>
+                        <div class="tech-orbit-container">
+                            <span class="tech-tag"><span class="tech-dot"></span>MySQL</span>
+                            <span class="tech-tag"><span class="tech-dot"></span>MongoDB</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- PROJECTS -->
-        <section id="projects">
+        <section id="projects" aria-labelledby="projects-heading">
             <div class="container">
                 <span class="section-label">Projects</span>
-                <h2 class="section-title">Featured <span class="gradient-text">Work</span></h2>
+                <h2 class="section-title" id="projects-heading">Featured <span class="gradient-text">Work</span></h2>
+                <p class="section-subtitle">Enterprise-scale projects delivered for global clients across diverse domains.</p>
                 <div class="bento-grid" style="margin-top:40px;">
-                    <div class="project-card span-2"><div class="project-card-body"><h3>Fleet Management</h3><p>Security & Docker infrastructure for Panasonic.</p><div class="project-tags"><span class="project-tag">Laravel</span><span class="project-tag">AWS</span></div></div></div>
-                    <div class="project-card"><div class="project-card-body"><h3>ShulCloud</h3><p>Legacy PHP to React migration.</p><div class="project-tags"><span class="project-tag">React</span><span class="project-tag">GraphQL</span></div></div></div>
+                    <!-- Project 1: Panasonic Fleet Management -->
+                    <div class="project-card span-2">
+                        <div class="project-card-header">
+                            <span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span>
+                            <span class="window-title" style="flex:1;text-align:center;">panasonic-fleet.tsx</span>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-company">Panasonic • CalSoft Inc. | July 2025 – Present</div>
+                            <h3>Fleet Management System</h3>
+                            <p>Enhanced application security by implementing robust authentication, authorization, and audit logging mechanisms. Refactored Docker-based infrastructure for increased deployment reliability and environment consistency. Designed and implemented new Laravel APIs while actively participating in business requirement analysis and backend architecture decisions.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Laravel</span><span class="project-tag">Symfony</span><span class="project-tag">React JS</span><span class="project-tag">MySQL</span><span class="project-tag">REST</span><span class="project-tag">Docker</span><span class="project-tag">AWS</span>
+                            </div>
+                            <div class="project-highlight">Security & Compliance Enhanced • Infrastructure Modernized</div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: JPMorgan FROSCH -->
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span>
+                            <span class="window-title">jpmorgan-frosch.tsx</span>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-company">JPMorgan FROSCH • Cybage | Dec 2021 – July 2025</div>
+                            <h3>Travel Platform Security Enhancement</h3>
+                            <p>Implemented critical security improvements and performance optimizations. Conducted comprehensive security assessments using Checkmarx, identifying and remediating vulnerabilities to improve the overall security posture.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">React JS</span><span class="project-tag">Laravel</span><span class="project-tag">MySQL</span><span class="project-tag">REST</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">Checkmarx</span>
+                            </div>
+                            <div class="project-highlight">Security Posture Improved • Compliance Achieved</div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: ShulCloud -->
+                    <div class="project-card span-2">
+                        <div class="project-card-header">
+                            <span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span>
+                            <span class="window-title">shulcloud.tsx</span>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-company">ShulCloud • Cybage | Dec 2021 – July 2025</div>
+                            <h3>Legacy Modernization & Payment Integration</h3>
+                            <p>Transformed a legacy PHP application into modern React class-based components, enhancing maintainability and performance. Integrated payment gateways, email platforms, and SMS services (Twilio). Implemented Google Analytics 4 (GA4) tracking and event monitoring for data-driven product and business decisions.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">React JS</span><span class="project-tag">Laravel</span><span class="project-tag">Core PHP</span><span class="project-tag">Docker</span><span class="project-tag">MySQL</span><span class="project-tag">GraphQL</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">Twilio</span><span class="project-tag">GA4</span>
+                            </div>
+                            <div class="project-highlight">Legacy → Modern Architecture • Payment Gateway Integrated</div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: SRV Media -->
+                    <div class="project-card">
+                        <div class="project-card-header">
+                            <span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span>
+                            <span class="window-title">srv-media.tsx</span>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-company">SRV Media Pvt. Ltd. | Nov 2019 – Sep 2021</div>
+                            <h3>Client Website & Web Application Development</h3>
+                            <p>Developed and maintained multiple client websites and web applications. Built custom WordPress themes and plugins, integrated third-party APIs, and optimized site performance achieving 40% faster load times.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">PHP</span><span class="project-tag">WordPress</span><span class="project-tag">JavaScript</span><span class="project-tag">jQuery</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">MySQL</span>
+                            </div>
+                            <div class="project-highlight">40% Performance Improvement • 10+ Clients Served</div>
+                        </div>
+                    </div>
+
+                    <!-- Project 5: Ubitech Systems -->
+                    <div class="project-card span-2">
+                        <div class="project-card-header">
+                            <span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span>
+                            <span class="window-title">ubitech.tsx</span>
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-company">Ubitech Systems | Aug 2018 – Sep 2019</div>
+                            <h3>Full-Stack Web Applications & API Development</h3>
+                            <p>Built and deployed full-stack web applications using CodeIgniter and Laravel frameworks. Designed RESTful APIs and integrated payment systems. Worked directly with clients to gather requirements and deliver end-to-end solutions on schedule with high quality standards.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">PHP</span><span class="project-tag">CodeIgniter</span><span class="project-tag">Laravel</span><span class="project-tag">JavaScript</span><span class="project-tag">jQuery</span><span class="project-tag">MySQL</span><span class="project-tag">REST</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span>
+                            </div>
+                            <div class="project-highlight">End-to-End Delivery • Client Satisfaction</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- PROFESSIONAL JOURNEY WITH CORRECTED STEPPER -->
-        <section id="experience">
+        <!-- PROFESSIONAL JOURNEY -->
+        <section id="experience" aria-labelledby="experience-heading">
             <div class="container">
                 <span class="section-label">Career</span>
-                <h2 class="section-title">Professional <span class="gradient-text">Journey</span></h2>
-                <p style="color:var(--text-secondary);max-width:600px;">7.6+ years across 5 organizations – each role a chapter of impact.</p>
+                <h2 class="section-title" id="experience-heading">Professional <span class="gradient-text">Journey</span></h2>
+                <p class="section-subtitle">7.6+ years across 5 organizations — each role a chapter of impact and innovation.</p>
 
                 <div class="timeline" id="timelineContainer">
                     <div class="timeline-progress">
@@ -826,40 +1484,40 @@
                         <div class="timeline-period">July 2025 – Present</div>
                         <h3>Principal Software Engineer</h3>
                         <div class="timeline-company">CalSoft Inc. — Panasonic Fleet Management</div>
-                        <p class="timeline-desc">Leading security enhancements, Docker infrastructure refactoring, and Laravel API design.</p>
-                        <div class="timeline-techs"><span class="timeline-tech">Laravel</span><span class="timeline-tech">AWS</span><span class="timeline-tech">React</span></div>
+                        <p class="timeline-desc">Leading security enhancements with robust authentication, authorization, and audit logging. Refactoring Docker infrastructure for deployment reliability. Designing Laravel APIs while driving backend architecture decisions.</p>
+                        <div class="timeline-techs"><span class="timeline-tech">Laravel</span><span class="timeline-tech">Symfony</span><span class="timeline-tech">React JS</span><span class="timeline-tech">MySQL</span><span class="timeline-tech">Docker</span><span class="timeline-tech">AWS</span></div>
                     </div>
                     <div class="timeline-item visible" data-index="1">
                         <div class="timeline-dot-static"></div>
                         <div class="timeline-period">Dec 2021 – July 2025</div>
                         <h3>Web Developer</h3>
                         <div class="timeline-company">Cybage Software Pvt. Ltd.</div>
-                        <p class="timeline-desc">JPMorgan FROSCH security & ShulCloud legacy migration with payment/Twilio/GA4 integration.</p>
-                        <div class="timeline-techs"><span class="timeline-tech">React</span><span class="timeline-tech">Laravel</span><span class="timeline-tech">MySQL</span></div>
+                        <p class="timeline-desc"><strong>JPMorgan FROSCH:</strong> Critical security improvements & performance optimizations with Checkmarx.<br><strong>ShulCloud:</strong> Legacy PHP → React migration, payment gateway integration, Twilio SMS, GA4 tracking.</p>
+                        <div class="timeline-techs"><span class="timeline-tech">React JS</span><span class="timeline-tech">Laravel</span><span class="timeline-tech">Core PHP</span><span class="timeline-tech">MySQL</span><span class="timeline-tech">GraphQL</span><span class="timeline-tech">Docker</span><span class="timeline-tech">Checkmarx</span></div>
                     </div>
                     <div class="timeline-item visible" data-index="2">
                         <div class="timeline-dot-static"></div>
                         <div class="timeline-period">Nov 2019 – Sep 2021</div>
                         <h3>Web Developer</h3>
                         <div class="timeline-company">SRV Media Pvt. Ltd.</div>
-                        <p class="timeline-desc">Built WordPress solutions and optimized client websites for performance.</p>
-                        <div class="timeline-techs"><span class="timeline-tech">PHP</span><span class="timeline-tech">WordPress</span><span class="timeline-tech">jQuery</span></div>
+                        <p class="timeline-desc">Developed and maintained multiple client websites. Built custom WordPress themes and plugins, integrated third-party APIs, and optimized site performance achieving 40% faster load times.</p>
+                        <div class="timeline-techs"><span class="timeline-tech">PHP</span><span class="timeline-tech">WordPress</span><span class="timeline-tech">JavaScript</span><span class="timeline-tech">jQuery</span><span class="timeline-tech">HTML/CSS</span><span class="timeline-tech">MySQL</span></div>
                     </div>
                     <div class="timeline-item visible" data-index="3">
                         <div class="timeline-dot-static"></div>
                         <div class="timeline-period">Aug 2018 – Sep 2019</div>
                         <h3>Web Developer</h3>
                         <div class="timeline-company">Ubitech Systems</div>
-                        <p class="timeline-desc">Full‑stack development with CodeIgniter & Laravel, delivering end‑to‑end client solutions.</p>
-                        <div class="timeline-techs"><span class="timeline-tech">CodeIgniter</span><span class="timeline-tech">Laravel</span><span class="timeline-tech">REST</span></div>
+                        <p class="timeline-desc">Built full-stack web applications using CodeIgniter and Laravel. Designed RESTful APIs and integrated payment systems. Delivered end-to-end client solutions on schedule.</p>
+                        <div class="timeline-techs"><span class="timeline-tech">PHP</span><span class="timeline-tech">CodeIgniter</span><span class="timeline-tech">Laravel</span><span class="timeline-tech">JavaScript</span><span class="timeline-tech">jQuery</span><span class="timeline-tech">MySQL</span><span class="timeline-tech">REST</span></div>
                     </div>
                     <div class="timeline-item visible" data-index="4">
                         <div class="timeline-dot-static"></div>
                         <div class="timeline-period">Earlier – 2018</div>
                         <h3>Career Foundation</h3>
                         <div class="timeline-company">Building full‑stack expertise</div>
-                        <p class="timeline-desc">Mastered PHP, JavaScript, and core web technologies through hands‑on projects.</p>
-                        <div class="timeline-techs"><span class="timeline-tech">PHP</span><span class="timeline-tech">JavaScript</span><span class="timeline-tech">HTML/CSS</span></div>
+                        <p class="timeline-desc">Developed strong foundations in PHP, JavaScript, and full-stack development. Mastered core web technologies through hands-on project delivery and continuous learning.</p>
+                        <div class="timeline-techs"><span class="timeline-tech">PHP</span><span class="timeline-tech">JavaScript</span><span class="timeline-tech">HTML/CSS</span><span class="timeline-tech">SQL</span><span class="timeline-tech">C</span></div>
                     </div>
                 </div>
 
@@ -867,47 +1525,65 @@
                     <pre>🚀 <span style="color:#ce9178;">"Building the future,
 one commit at a time."</span>
 <span style="color:#6a9955;">// 7.6+ years of
-// crafting excellence</span></pre>
+// crafting excellence</span>
+<span style="color:#4ec9b0;">$journey = new Career();
+$journey->continue();</span></pre>
                 </div>
             </div>
         </section>
 
         <!-- CONTACT -->
-        <section id="contact">
-            <div class="container" style="text-align:center;">
+        <section id="contact" aria-labelledby="contact-heading">
+            <div class="container">
                 <span class="section-label">Contact</span>
-                <h2 class="section-title">Let's <span class="gradient-text">Work Together</span></h2>
+                <h2 class="section-title" id="contact-heading">Let's <span class="gradient-text">Work Together</span></h2>
+                <p style="color:var(--text-secondary);margin-bottom:8px;">I'm open to Senior Web Developer, Lead Engineer, and Principal Engineer roles.</p>
+                <p style="color:var(--text-muted);font-size:0.9rem;">India • Remote-friendly</p>
                 <div class="contact-cards">
-                    <a href="mailto:vishalpatil961994@gmail.com" class="contact-card">✉️ vishalpatil961994@gmail.com</a>
-                    <a href="tel:+919637785599" class="contact-card">📞 +91 9637785599</a>
-                    <a href="https://linkedin.com/in/vishalpatil" target="_blank" rel="noopener" class="contact-card">🔗 LinkedIn</a>
+                    <a href="mailto:vishalpatil961994@gmail.com" class="contact-card btn-magnetic">
+                        <i class="fa-solid fa-envelope" style="color:var(--accent-cyan);"></i> vishalpatil961994@gmail.com
+                    </a>
+                    <a href="https://linkedin.com/in/vishalpatil961994" target="_blank" rel="noopener" class="contact-card btn-magnetic">
+                        <i class="fa-brands fa-linkedin" style="color:var(--accent-blue);"></i> LinkedIn Profile
+                    </a>
+                    <a href="https://github.com/vishalpatil" target="_blank" rel="noopener" class="contact-card btn-magnetic">
+                        <i class="fa-brands fa-github" style="color:#fff;"></i> GitHub
+                    </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer><div class="container">Built with ❤️ by Vishal V Patil • Pune, India</div></footer>
+    <footer role="contentinfo">
+        <div class="container">
+            <p>Built with <span>&lt;3</span> by <strong>Vishal V Patil</strong> © 2026 | India</p>
+        </div>
+    </footer>
 
     <script>
         (function() {
-            // Particle canvas
+            // ─────────────────────────────────────
+            // PARTICLE CANVAS
+            // ─────────────────────────────────────
             const canvas = document.getElementById('particle-canvas');
             const ctx = canvas.getContext('2d');
             let particles = [];
             let animationId;
             const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            function resize() { canvas.width = innerWidth;
-                canvas.height = innerHeight; }
-            addEventListener('resize', resize);
-            resize();
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
 
             const chars = '{}[]()<>/=+-*&|^~!@#$%^&*()_+`~;:.,?/\\'.split('');
-            class Particle {
+            class CodeParticle {
                 constructor() { this.reset(true); }
-                reset(init) {
+                reset(initial) {
                     this.x = Math.random() * canvas.width;
-                    this.y = init ? Math.random() * canvas.height : -30;
+                    this.y = initial ? Math.random() * canvas.height : -30;
                     this.size = Math.random() * 2 + 0.6;
                     this.speedY = Math.random() * 0.5 + 0.2;
                     this.speedX = (Math.random() - 0.5) * 0.25;
@@ -927,114 +1603,314 @@ one commit at a time."</span>
                     }
                 }
                 draw() {
-                    ctx.font = `${this.size*7}px 'JetBrains Mono'`;
-                    ctx.fillStyle = `rgba(${this.color},${this.opacity * Math.min(this.life/this.maxLife,1)})`;
+                    ctx.font = `${this.size * 7}px 'JetBrains Mono', monospace`;
+                    ctx.fillStyle = `rgba(${this.color},${this.opacity * Math.min(this.life / this.maxLife, 1)})`;
                     ctx.fillText(this.char, this.x, this.y);
                 }
             }
-            for (let i = 0; i < (isReduced ? 20 : 80); i++) particles.push(new Particle());
+            for (let i = 0; i < (isReduced ? 20 : 80); i++) particles.push(new CodeParticle());
 
-            function animate() {
+            function animateParticles() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 particles.forEach(p => { p.update();
                     p.draw(); });
-                animationId = requestAnimationFrame(animate);
+                animationId = requestAnimationFrame(animateParticles);
             }
-            if (!isReduced) animate();
+            if (!isReduced) animateParticles();
 
-            // Header scroll
+            // ─────────────────────────────────────
+            // HEADER SCROLL
+            // ─────────────────────────────────────
             const header = document.getElementById('header');
-            addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 50), { passive: true });
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            }, { passive: true });
 
-            // Mobile menu
+            // ─────────────────────────────────────
+            // MOBILE MENU
+            // ─────────────────────────────────────
             const menuBtn = document.getElementById('mobileMenuBtn');
-            const nav = document.getElementById('navLinks');
+            const navLinks = document.getElementById('navLinks');
             menuBtn.addEventListener('click', () => {
-                const open = nav.classList.toggle('open');
-                menuBtn.setAttribute('aria-expanded', open);
-                menuBtn.textContent = open ? '✕' : '☰';
+                const isOpen = navLinks.classList.toggle('open');
+                menuBtn.setAttribute('aria-expanded', isOpen);
+                menuBtn.textContent = isOpen ? '✕' : '☰';
             });
-            nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-                nav.classList.remove('open');
-                menuBtn.setAttribute('aria-expanded', 'false');
-                menuBtn.textContent = '☰';
-            }));
+            navLinks.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => {
+                    navLinks.classList.remove('open');
+                    menuBtn.setAttribute('aria-expanded', 'false');
+                    menuBtn.textContent = '☰';
+                });
+            });
 
-            // Typing
+            // ─────────────────────────────────────
+            // TYPING ANIMATION
+            // ─────────────────────────────────────
             const typingEl = document.getElementById('heroTyping');
-            const phrases = ['> Building scalable web applications', '> Crafting secure PHP backends', '> Designing React frontends'];
-            let pi = 0,
-                ci = 0,
-                del = false;
+            const phrases = [
+                '> Building scalable web applications',
+                '> Crafting secure PHP backends',
+                '> Designing React frontends',
+                '> Optimizing database performance',
+                '> Architecting cloud solutions',
+                '> Delivering enterprise-grade software',
+            ];
+            let phraseIdx = 0,
+                charIdx = 0,
+                deleting = false,
+                typeSpeed = 60;
 
-            function type() {
-                if (isReduced) { typingEl.innerHTML = phrases[0] + '<span class="cursor"></span>'; return; }
-                const cur = phrases[pi];
-                typingEl.innerHTML = cur.substring(0, ci + (del ? 0 : 1)) + '<span class="cursor"></span>';
-                if (!del) {
-                    ci++;
-                    if (ci === cur.length) { del = true;
-                        setTimeout(type, 1600); return; }
-                } else {
-                    ci--;
-                    if (ci === 0) { del = false;
-                        pi = (pi + 1) % phrases.length;
-                        setTimeout(type, 300); return; }
+            function typeLoop() {
+                if (isReduced) {
+                    typingEl.innerHTML = phrases[0] + '<span class="cursor"></span>';
+                    return;
                 }
-                setTimeout(type, del ? 25 : 50);
+                const current = phrases[phraseIdx];
+                if (!deleting) {
+                    typingEl.innerHTML = current.substring(0, charIdx + 1) + '<span class="cursor"></span>';
+                    charIdx++;
+                    if (charIdx === current.length) {
+                        deleting = true;
+                        typeSpeed = 1800;
+                    } else {
+                        typeSpeed = 40 + Math.random() * 50;
+                    }
+                } else {
+                    typingEl.innerHTML = current.substring(0, charIdx) + '<span class="cursor"></span>';
+                    charIdx--;
+                    if (charIdx === 0) {
+                        deleting = false;
+                        phraseIdx = (phraseIdx + 1) % phrases.length;
+                        typeSpeed = 300;
+                    } else {
+                        typeSpeed = 20 + Math.random() * 25;
+                    }
+                }
+                setTimeout(typeLoop, typeSpeed);
             }
-            setTimeout(type, 1200);
+            setTimeout(typeLoop, 1200);
 
-            // Scroll‑driven timeline stepper (aligned)
+            // ─────────────────────────────────────
+            // MAGNETIC BUTTONS
+            // ─────────────────────────────────────
+            document.querySelectorAll('.btn-magnetic').forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    if (isReduced) return;
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    btn.style.transform = `translate(${x * 0.12}px, ${y * 0.12}px)`;
+                });
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = '';
+                });
+            });
+
+            // ─────────────────────────────────────
+            // PDF RESUME DOWNLOAD
+            // ─────────────────────────────────────
+            const { jsPDF } = window.jspdf;
+
+            function downloadResumePDF() {
+                const doc = new jsPDF('p', 'mm', 'a4');
+                const pageWidth = doc.internal.pageSize.getWidth();
+                let y = 20;
+
+                // Title
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(22);
+                doc.setTextColor(30, 30, 30);
+                doc.text('Vishal V Patil', pageWidth / 2, y, { align: 'center' });
+                y += 8;
+
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(80, 80, 80);
+                doc.text('Senior Web Developer | India', pageWidth / 2, y, { align: 'center' });
+                y += 6;
+                doc.setFontSize(10);
+                doc.text('Email: vishalpatil961994@gmail.com | LinkedIn: linkedin.com/in/vishalpatil961994', pageWidth / 2, y, {
+                    align: 'center'
+                });
+                y += 12;
+
+                // Line
+                doc.setDrawColor(77, 166, 255);
+                doc.setLineWidth(0.5);
+                doc.line(20, y, pageWidth - 20, y);
+                y += 10;
+
+                // Objective
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(13);
+                doc.setTextColor(30, 30, 30);
+                doc.text('OBJECTIVE', 20, y);
+                y += 7;
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(10);
+                doc.setTextColor(60, 60, 60);
+                const objective = 'A skilled Web Developer with more than 7.6 years of experience in building and optimizing dynamic web applications. Expertise in PHP and React JS, enabling the delivery of robust and user-centric web applications. Proven ability to collaborate effectively within agile teams, adhering to best practices and delivering projects on time and within budget.';
+                const objectiveLines = doc.splitTextToSize(objective, pageWidth - 40);
+                doc.text(objectiveLines, 20, y);
+                y += objectiveLines.length * 5 + 6;
+
+                // Skills
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(13);
+                doc.setTextColor(30, 30, 30);
+                doc.text('SKILLS AND ABILITIES', 20, y);
+                y += 7;
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(10);
+                doc.setTextColor(60, 60, 60);
+                const skills = [
+                    'Languages: PHP, JavaScript, SQL, C',
+                    'Frameworks & Libraries: CodeIgniter, Laravel, React JS, jQuery, Bootstrap, HTML, CSS, AJAX',
+                    'APIs: GraphQL, REST, SOAP',
+                    'Tools & CRM: Git, Docker, Google Analytics, WordPress, Checkmarx',
+                    'AI Tools: Claude, Gemini, Antigravity, Kimi K2',
+                    'Databases: MySQL, MongoDB'
+                ];
+                skills.forEach(skill => {
+                    doc.text('• ' + skill, 25, y);
+                    y += 5.5;
+                });
+                y += 4;
+
+                // Line
+                doc.setDrawColor(77, 166, 255);
+                doc.line(20, y, pageWidth - 20, y);
+                y += 8;
+
+                // Experience
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(13);
+                doc.setTextColor(30, 30, 30);
+                doc.text('EXPERIENCE', 20, y);
+                y += 8;
+
+                const experiences = [{
+                    title: 'Principal Software Engineer – CalSoft Inc.',
+                    period: 'July 2025 – Present',
+                    desc: 'Panasonic: Fleet Management - Enhanced application security, refactored Docker infrastructure, designed Laravel APIs. Technologies: Laravel, Symfony, React JS, MySQL, REST, Docker, AWS.'
+                }, {
+                    title: 'Web Developer – Cybage Software Pvt. Ltd.',
+                    period: 'Dec 2021 – July 2025',
+                    desc: 'JPMorgan FROSCH: Security improvements with Checkmarx. ShulCloud: Legacy PHP to React migration, payment gateways, Twilio SMS, GA4. Technologies: React JS, Laravel, Core PHP, Docker, MySQL, GraphQL.'
+                }, {
+                    title: 'Web Developer – SRV Media Pvt. Ltd.',
+                    period: 'Nov 2019 – Sep 2021',
+                    desc: 'Built client websites and WordPress solutions. Optimized performance achieving 40% faster load times. Technologies: PHP, WordPress, JavaScript, jQuery, HTML/CSS, MySQL.'
+                }, {
+                    title: 'Web Developer – Ubitech Systems',
+                    period: 'Aug 2018 – Sep 2019',
+                    desc: 'Full-stack development with CodeIgniter & Laravel. Designed RESTful APIs. Technologies: PHP, CodeIgniter, Laravel, JavaScript, jQuery, MySQL, REST.'
+                }];
+
+                experiences.forEach(exp => {
+                    doc.setFont('helvetica', 'bold');
+                    doc.setFontSize(11);
+                    doc.setTextColor(30, 30, 30);
+                    doc.text(exp.title, 20, y);
+                    y += 5;
+                    doc.setFont('helvetica', 'italic');
+                    doc.setFontSize(9);
+                    doc.setTextColor(100, 100, 100);
+                    doc.text(exp.period, 20, y);
+                    y += 4.5;
+                    doc.setFont('helvetica', 'normal');
+                    doc.setFontSize(10);
+                    doc.setTextColor(60, 60, 60);
+                    const descLines = doc.splitTextToSize(exp.desc, pageWidth - 40);
+                    doc.text(descLines, 20, y);
+                    y += descLines.length * 5 + 5;
+                });
+
+                // Save
+                doc.save('Vishal_V_Patil_Resume.pdf');
+                showToast();
+            }
+
+            function showToast() {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2500);
+            }
+
+            document.getElementById('downloadResumeBtn').addEventListener('click', downloadResumePDF);
+
+            // ─────────────────────────────────────
+            // SCROLL-DRIVEN TIMELINE
+            // ─────────────────────────────────────
             const expSection = document.getElementById('experience');
             const progressFill = document.getElementById('progressFill');
             const progressDot = document.getElementById('progressDot');
-            const items = document.querySelectorAll('.timeline-item');
+            const timelineItems = document.querySelectorAll('.timeline-item');
             const codeFloat = document.getElementById('codeFloat');
-            const totalItems = items.length;
+            const totalItems = timelineItems.length;
 
-            function updateStepper() {
+            function updateTimelineProgress() {
                 const rect = expSection.getBoundingClientRect();
-                const h = window.innerHeight;
-                const sh = rect.height;
-                if (sh === 0) return;
-                let progress = (h - rect.top) / (sh + h);
+                const windowH = window.innerHeight;
+                const sectionHeight = rect.height;
+                if (sectionHeight === 0) return;
+                let progress = (windowH - rect.top) / (sectionHeight + windowH);
                 progress = Math.min(Math.max(progress, 0), 1);
                 progressFill.style.transform = `scaleY(${progress})`;
                 progressDot.style.top = `${progress * 100}%`;
                 const activeIdx = Math.min(Math.floor(progress * totalItems), totalItems - 1);
-                items.forEach((item, i) => item.classList.toggle('active', i === activeIdx));
+                timelineItems.forEach((item, i) => item.classList.toggle('active', i === activeIdx));
                 codeFloat.classList.toggle('reveal', progress > 0.15 && progress < 0.9);
             }
-            addEventListener('scroll', updateStepper, { passive: true });
-            addEventListener('resize', updateStepper);
-            updateStepper();
+            window.addEventListener('scroll', updateTimelineProgress, { passive: true });
+            window.addEventListener('resize', updateTimelineProgress);
+            updateTimelineProgress();
 
-            // Fade items on scroll
-            const observer = new IntersectionObserver(entries => entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.classList.add('visible');
-                    observer.unobserve(e.target);
-                }
-            }), { threshold: 0.2 });
-            items.forEach(item => observer.observe(item));
+            // ─────────────────────────────────────
+            // FADE IN ON SCROLL
+            // ─────────────────────────────────────
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+            timelineItems.forEach(item => observer.observe(item));
 
-            // Reduced motion
+            // ─────────────────────────────────────
+            // REDUCED MOTION
+            // ─────────────────────────────────────
             if (isReduced) document.body.classList.add('reduced-motion');
-            matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', e => {
+            window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
                 document.body.classList.toggle('reduced-motion', e.matches);
-                if (e.matches && animationId) cancelAnimationFrame(animationId);
-                else if (!e.matches && !animationId) animate();
+                if (e.matches && animationId) {
+                    cancelAnimationFrame(animationId);
+                    animationId = null;
+                } else if (!e.matches && !animationId) {
+                    animateParticles();
+                }
             });
 
-            // Escape closes menu
-            addEventListener('keydown', e => {
-                if (e.key === 'Escape' && nav.classList.contains('open')) {
-                    nav.classList.remove('open');
+            // ─────────────────────────────────────
+            // KEYBOARD ESCAPE
+            // ─────────────────────────────────────
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+                    navLinks.classList.remove('open');
                     menuBtn.setAttribute('aria-expanded', 'false');
                     menuBtn.textContent = '☰';
+                    menuBtn.focus();
                 }
             });
+
+            console.log('%c👨‍💻 Vishal V Patil %c| Senior Web Developer',
+                'font-size:1.1em;font-weight:bold;color:#4da6ff;',
+                'color:#b0b8c4;');
+            console.log('%c🚀 Portfolio ready. 7.6+ years of excellence.', 'color:#3dd9c1;font-style:italic;');
+            console.log('%c📍 Pune, India | 5 companies | 30+ projects', 'color:#6e7681;');
         })();
     </script>
 </body>
