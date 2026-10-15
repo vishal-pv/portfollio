@@ -809,6 +809,10 @@
         }
         .timeline {
             position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(230px, 280px);
+            column-gap: 28px;
+            align-items: start;
             margin-top: 48px;
             padding-left: 0;
         }
@@ -868,11 +872,15 @@
         }
         .timeline-item {
             position: relative;
+            grid-column: 1 / -1;
             padding-left: 50px;
             margin-bottom: 48px;
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .timeline-item-last {
+            grid-column: 1;
         }
         .timeline-item.visible {
             opacity: 1;
@@ -934,12 +942,10 @@
             border: 1px solid rgba(77, 166, 255, 0.15);
         }
 
-        /* Floating code snippet */
+        /* Career code snippet */
         .experience-code-float {
-            position: absolute;
-            right: 20px;
-            top: 20%;
-            width: 250px;
+            grid-column: 2;
+            align-self: center;
             background: rgba(21, 26, 36, 0.85);
             border: 1px solid var(--border-subtle);
             border-radius: var(--radius-lg);
@@ -1071,6 +1077,9 @@
             }
             .experience-code-float {
                 display: none;
+            }
+            .timeline {
+                display: block;
             }
         }
         @media (max-width: 640px) {
@@ -1438,7 +1447,7 @@
                         <p class="timeline-desc">Developed and maintained multiple client websites. Built custom WordPress themes and plugins, integrated third-party APIs, and optimized site performance achieving 40% faster load times.</p>
                         <div class="timeline-techs"><span class="timeline-tech">PHP</span><span class="timeline-tech">WordPress</span><span class="timeline-tech">JavaScript</span><span class="timeline-tech">jQuery</span><span class="timeline-tech">HTML/CSS</span><span class="timeline-tech">MySQL</span></div>
                     </div>
-                    <div class="timeline-item visible" data-index="3">
+                    <div class="timeline-item timeline-item-last visible" data-index="3">
                         <div class="timeline-dot-static"></div>
                         <div class="timeline-period">Aug 2018 – Sep 2019</div>
                         <h3>Web Developer</h3>
@@ -1446,14 +1455,14 @@
                         <p class="timeline-desc">Built full-stack web applications using CodeIgniter and Laravel. Designed RESTful APIs and integrated payment systems. Delivered end-to-end client solutions on schedule.</p>
                         <div class="timeline-techs"><span class="timeline-tech">PHP</span><span class="timeline-tech">CodeIgniter</span><span class="timeline-tech">Laravel</span><span class="timeline-tech">JavaScript</span><span class="timeline-tech">jQuery</span><span class="timeline-tech">MySQL</span><span class="timeline-tech">REST</span></div>
                     </div>
-                </div>
-                <div class="experience-code-float" id="codeFloat">
-                    <pre>🚀 <span style="color:#ce9178;">"Building the future,
+                    <div class="experience-code-float" id="codeFloat">
+                        <pre>🚀 <span style="color:#ce9178;">"Building the future,
 one commit at a time."</span>
 <span style="color:#6a9955;">// 7.6+ years of
 // crafting excellence</span>
 <span style="color:#4ec9b0;">$journey = new Career();
 $journey->continue();</span></pre>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1588,7 +1597,7 @@ $journey->continue();</span></pre>
                 progressDot.style.top = `${progress * 100}%`;
                 const activeIdx = Math.min(Math.floor(progress * totalItems), totalItems - 1);
                 items.forEach((item, i) => item.classList.toggle('active', i === activeIdx));
-                codeFloat.classList.toggle('reveal', progress > 0.15 && progress < 0.9);
+                codeFloat.classList.toggle('reveal', activeIdx === totalItems - 1);
             }
             addEventListener('scroll', updateStepper, { passive: true });
             addEventListener('resize', updateStepper);
